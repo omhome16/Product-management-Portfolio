@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="An AI Product Management case study on ChatGPT Academic Honesty — designing a Socratic tutoring layer and calibrated confidence indicators for Indian engineering students to mitigate regulatory risks.">
+  <title>ChatGPT Academic Honesty: Socratic Tutoring Layer — PM Case Study by Om Nawale</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%2310a37f'/></svg>">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Portfolio Header & Project Selector -->
+  <header class="portfolio-header">
+    <div class="header-inner">
+      <a href="../../index.html" class="portfolio-home-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Portfolio
+      </a>
+      <div class="portfolio-owner">
+        <span class="owner-name">Om Nawale</span>
+        <span class="owner-title">Product Manager Portfolio</span>
+      </div>
+      <div class="project-selector">
+        <span class="selector-label">Projects:</span>
+        <a href="../../Zomato Gold Retention-Beyond Discounts/web/index.html" class="project-pill select-zomato">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#E23744"/>
+            <text x="50" y="62" font-family="Arial,sans-serif" font-weight="900" font-size="42" fill="white" text-anchor="middle">Z</text>
+          </svg>
+          <span>Zomato Gold</span>
+        </a>
+        <a href="../../Spotify Podcast Discovery The New Creator Gap/web/index.html" class="project-pill select-spotify">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#1DB954"/>
+            <path d="M70,38 C60,32 40,32 30,35 C28,36 26,34 25,32 C24,30 26,28 28,27 C40,24 64,24 75,30 C77,31 78,34 77,36 C76,38 72,39 70,38 Z" fill="white"/>
+            <path d="M65,48 C57,43 42,41 33,44 C31,45 29,43 28,41 C27,39 29,37 31,36 C42,33 59,35 68,40 C70,41 71,44 70,46 C69,48 67,49 65,48 Z" fill="white"/>
+            <path d="M60,58 C53,54 44,53 35,55 C33,56 31,54 30,52 C29,50 31,48 33,47 C43,45 53,46 59,50 C61,51 62,54 61,56 C60,58 58,59 60,58 Z" fill="white"/>
+          </svg>
+          <span>Spotify Discovery</span>
+        </a>
+        <a href="#" class="project-pill select-chatgpt active">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#10a37f"/>
+            <path d="M68,42 C67,36 61,32 55,32 C52,32 49,33 47,35 C44,32 39,30 34,31 C28,32 24,37 23,43 C22,46 23,49 25,51 C22,54 21,59 22,64 C24,70 29,74 35,74 C38,74 41,73 43,71 C46,74 51,76 56,75 C62,74 66,69 67,63 C68,60 67,57 65,55 C68,52 69,47 68,42 Z" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>ChatGPT Honesty</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none" class="openai-logo-svg">
+          <circle cx="50" cy="50" r="48" fill="#10a37f"/>
+          <path d="M70.5,43.2 C70.5,40.1 68.3,37.6 65.2,37.1 C65.0,34.0 62.4,31.6 59.3,31.6 C57.8,31.6 56.4,32.2 55.3,33.2 C53.8,31.3 51.4,30.2 48.9,30.4 C45.8,30.7 43.4,33.1 43.1,36.2 C40.0,36.5 37.6,38.9 37.3,42.0 C37.0,45.1 39.1,47.9 42.1,48.6 C40.9,50.1 40.2,52.0 40.2,54.0 C40.2,57.1 42.4,59.6 45.5,60.1 C45.7,63.2 48.3,65.6 51.4,65.6 C52.9,65.6 54.3,65.0 55.4,64.0 C56.9,65.9 59.3,67.0 61.8,66.8 C64.9,66.5 67.3,64.1 67.6,61.0 C70.7,60.7 73.1,58.3 73.4,55.2 C73.7,52.1 71.6,49.3 68.6,48.6 C69.8,47.1 70.5,45.2 70.5,43.2 Z" stroke="white" stroke-width="4"/>
+        </svg>
+        <span class="nav-logo-text">ChatGPT <span>Tutor Mode</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#executive-summary">Summary</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#frameworks">Frameworks</a></li>
+        <li><a href="#rice">RICE</a></li>
+        <li><a href="#solution">Solution UI</a></li>
+        <li><a href="#metrics">Metrics</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        AI Product Management Case Study
+      </div>
+      <h1>
+        ChatGPT Academic Honesty<br>
+        <span class="highlight">Designing a Tutoring Layer</span>
+      </h1>
+      <p class="hero-subtitle">
+        How to resolve the structural misalignment between answer completeness and active learning by introducing Socratic guidance and calibrated confidence indicators for Indian engineering campuses.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <i data-lucide="user"></i>
+          Om Nawale
+        </div>
+        <div class="hero-meta-item">
+          <i data-lucide="calendar"></i>
+          June 2026
+        </div>
+        <div class="hero-meta-item">
+          <i data-lucide="clock"></i>
+          12 min read
+        </div>
+      </div>
+      <button class="hero-cta" onclick="document.getElementById('executive-summary').scrollIntoView({behavior:'smooth'})">
+        Read Case Study
+        <i data-lucide="chevron-down"></i>
+      </button>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section class="section" id="executive-summary">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">01 — Executive Summary</span>
+        <h2>The Strategic Thesis</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="glass-card card-accent-red reveal stagger-1">
+          <div class="card-icon"><i data-lucide="alert-circle"></i></div>
+          <h3>The Problem</h3>
+          <p>ChatGPT is optimized for instant direct answers. In higher technical education, this frictionless output enables students to submit coding and analytical lab assignments without comprehension, creating regulatory ban risks in India.</p>
+        </div>
+        <div class="glass-card card-accent-green reveal stagger-2">
+          <div class="card-icon"><i data-lucide="help-circle"></i></div>
+          <h3>The Approach</h3>
+          <p>Implement an opt-in "Tutor Mode" settings layer that intercepts academic queries using dynamic classifiers, replacing immediate solutions with interactive, Socratic guidance and domain-scoped confidence indicators.</p>
+        </div>
+        <div class="glass-card card-accent-blue reveal stagger-3">
+          <div class="card-icon"><i data-lucide="shield"></i></div>
+          <h3>Projected Impact</h3>
+          <p>Align ChatGPT with India's engineering regulatory mandate (AICTE), increase multi-turn learning engagement by 3.5x, and create B2B2C university licensing pipelines by presenting a learning-first ecosystem.</p>
+        </div>
+      </div>
+
+      <!-- Key Stats Dashboard -->
+      <div class="stats-row reveal stagger-4">
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="1.5" data-prefix="" data-suffix="M+">0</div>
+          <div class="stat-label">Annual Engineering Graduates</div>
+          <div class="stat-source">Source: <a href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer">AICTE India Data</a></div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="93" data-prefix="" data-suffix="%">0</div>
+          <div class="stat-label">AI Tool Student Adoption</div>
+          <div class="stat-source">Source: <a href="https://www.ugc.gov.in/" target="_blank" rel="noopener noreferrer">Academic Survey Metrics</a></div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="2025" data-prefix="" data-suffix="" style="font-size: 2.2rem;">0</div>
+          <div class="stat-label">AICTE Year of AI Mandate</div>
+          <div class="stat-source">Source: <a href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer">AICTE Digital Curriculums</a></div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="40" data-prefix="" data-suffix="%">0</div>
+          <div class="stat-label">Socratic Recall Retention Shift</div>
+          <div class="stat-source">Source: <a href="https://psycnet.apa.org/doi/10.1037/0022-0663.100.2.222" target="_blank" rel="noopener noreferrer">Journal of Educational Psych</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT & PROBLEM -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">02 — Context & Problem</span>
+        <h2>The Complete-vs-Comprehend Misalignment</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="reveal">
+          <div class="narrative-block">
+            <p>ChatGPT is designed to deliver immediate utility. However, active learning requires effortful processing. When an engineering student pastes their lab instructions (e.g., "Implement a Dijkstra queue in C++") and immediately receives a perfect, compiler-ready script, the system bypasses their cognitive cycle. The student passes their homework verification but remains unable to debug or write code independently.</p>
+            <p>For OpenAI, this is not just an ethical question; it is a critical regulatory hurdle. In 2024, the All India Council for Technical Education (AICTE) designated 2025 as the <strong>Year of Artificial Intelligence</strong>. Colleges are now mandated to implement digital integrity programs. An AI assistant perceived as actively deskilling students risks campus network bans, cutting OpenAI off from the world's largest engineering education funnel.</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="loop-visual-container">
+            <div class="loop-step" id="step-1">
+              <span class="step-num">1</span>
+              <div>
+                <h5>Flawless Code Generation</h5>
+                <p>Default ChatGPT yields instant, direct solution code blocks.</p>
+              </div>
+            </div>
+            <div class="loop-step" id="step-2">
+              <span class="step-num">2</span>
+              <div>
+                <h5>Submission Without Comprehension</h5>
+                <p>Student copy-pastes solutions to meet lab grading sheets.</p>
+              </div>
+            </div>
+            <div class="loop-step" id="step-3">
+              <span class="step-num">3</span>
+              <div>
+                <h5>Assessment Failure</h5>
+                <p>Student fails face-to-face vivas and written examination questions.</p>
+              </div>
+            </div>
+            <div class="loop-step" id="step-4">
+              <span class="step-num">4</span>
+              <div>
+                <h5>Institutional Backlash</h5>
+                <p>Colleges implement local network restrictions and ban student AI usage.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH FINDINGS -->
+  <section class="section" id="research">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">03 — Research Findings</span>
+        <h2>Discovery and Competitive Diagnostics</h2>
+      </div>
+
+      <div class="research-tabs reveal">
+        <button class="tab-btn active" data-tab="students"><i data-lucide="users"></i> Student Interviews</button>
+        <button class="tab-btn" data-tab="professors"><i data-lucide="award"></i> Professor Feedback</button>
+        <button class="tab-btn" data-tab="competitive"><i data-lucide="sliders"></i> Competitive Scan</button>
+        <button class="tab-btn" data-tab="policy"><i data-lucide="book-open"></i> Policy Context</button>
+      </div>
+
+      <!-- Panel: Students -->
+      <div class="tab-panel active" id="panel-students">
+        <div class="grid grid-2">
+          <div class="glass-card">
+            <h4>Student Behavior Cohorts (n = 10)</h4>
+            <p class="panel-meta">Qualitative insights from 2nd, 3rd, and final-year engineering students.</p>
+            <div class="input-placeholder-container">
+              <div class="placeholder-tag"><i data-lucide="info"></i> Research Observation</div>
+              <p><strong>The "Journal Copier" Behavior:</strong> Students prioritize task completion over retention. Flawless copy-pasted labs are submitted, but conceptual recall is zero after 24 hours.</p>
+            </div>
+            <ul class="bullet-list text-muted">
+              <li><strong>90% adoption rate:</strong> Students consult ChatGPT daily for lab sheets.</li>
+              <li><strong>Zero-effort debug:</strong> AI fixes segmentation faults instantly, preventing compile debugging learning.</li>
+              <li><strong>Viva dread:</strong> Fear of in-person evaluations where they must explain code logic.</li>
+            </ul>
+          </div>
+          <div class="glass-card card-accent-red">
+            <h4>Qualitative Interview Excerpt</h4>
+            <div class="research-quote-box">
+              <i data-lucide="quote" class="quote-icon"></i>
+              <p class="quote-text">"For our computer network labs, I just paste the prompt request and copy-paste the whole code block into my notebook. I get full marks on my submissions. But last week, during the internal viva, the professor asked me to explain the TCP handshake and I blanked out. ChatGPT did the homework, not me."</p>
+              <span class="quote-author">— 3rd-year CS student, Pune</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Professors -->
+      <div class="tab-panel" id="panel-professors">
+        <div class="grid grid-2">
+          <div class="glass-card">
+            <h4>Educator Concerns & Demands (n = 4)</h4>
+            <p class="panel-meta">Feedback from department heads and lab instructors.</p>
+            <div class="input-placeholder-container">
+              <div class="placeholder-tag"><i data-lucide="check-circle"></i> Educator Core Insight</div>
+              <p><strong>Assessment Vulnerability:</strong> Traditional homework sets have lost grading validity. Professors want to endorse interactive AI tools but require Socratic protections first.</p>
+            </div>
+            <ul class="bullet-list text-muted">
+              <li><strong>Grading disconnect:</strong> Flawless code submissions contrast with failing viva grades.</li>
+              <li><strong>Classroom shifts:</strong> Moving evaluations to surprise physical writing sessions.</li>
+              <li><strong>Academic alignment:</strong> Demand for interactive study companions rather than direct generators.</li>
+            </ul>
+          </div>
+          <div class="glass-card card-accent-blue">
+            <h4>Qualitative Professor Feedback</h4>
+            <div class="research-quote-box">
+              <i data-lucide="quote" class="quote-icon"></i>
+              <p class="quote-text">"Students submit flawless lab manuals, but when asked to modify a single line of code in the lab, they cannot explain how a pointer works. If ChatGPT offered a mode that acts like an interactive tutor rather than an answer machine, I would make it a mandatory part of my class syllabus."</p>
+              <span class="quote-author">— CS Department Lead, Mumbai</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Competitive Scan -->
+      <div class="tab-panel" id="panel-competitive">
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tool</th>
+                <th>Academic Focus</th>
+                <th>Tutoring Interface</th>
+                <th>Learning Design Strategy</th>
+                <th>Strategic Limitation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ChatGPT (Default)</strong></td>
+                <td>General Q&A</td>
+                <td>None</td>
+                <td>None (Instant Solutions)</td>
+                <td>Bypasses student reasoning; high risk of copy-pasting.</td>
+              </tr>
+              <tr>
+                <td><strong>Claude</strong></td>
+                <td>Text & Code Analysis</td>
+                <td>None</td>
+                <td>Minor Caveat Hedging</td>
+                <td>Still generates direct solutions by default.</td>
+              </tr>
+              <tr class="highlight-row-chatgpt">
+                <td><strong>Khanmigo</strong></td>
+                <td>K-12 Curriculums</td>
+                <td>Socratic Dialogue</td>
+                <td>High (Guiding Questions)</td>
+                <td>US focused, slow inference latency, paid subscription.</td>
+              </tr>
+              <tr>
+                <td><strong>Chegg</strong></td>
+                <td>Textbook Solutions</td>
+                <td>None</td>
+                <td>Direct Solution Delivery</td>
+                <td>Banned by universities; associated with plagiarism.</td>
+              </tr>
+              <tr>
+                <td><strong>Photomath</strong></td>
+                <td>Calculations</td>
+                <td>Static Working Steps</td>
+                <td>Low (Static Explanations)</td>
+                <td>Lacks conversational, interactive concept validation.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="insight-callout">
+          <i data-lucide="info" style="color: #10a37f;"></i>
+          <p><strong>The Opportunity Space:</strong> Khanmigo proves the validity of the Socratic method, but higher engineering education in India remains unserved. We occupy this white space by building a Socratic tutoring layer integrated directly into ChatGPT's existing infrastructure.</p>
+        </div>
+      </div>
+
+      <!-- Panel: Policy Context -->
+      <div class="tab-panel" id="panel-policy">
+        <div class="grid grid-2">
+          <div class="glass-card">
+            <h4>AICTE & UGC Policy Framework</h4>
+            <p class="panel-meta">National regulatory standards for educational digitalization.</p>
+            <ul class="bullet-list">
+              <li><strong>AICTE Mandate (2025):</strong> All technical institutes must enforce ethical AI policies, prioritizing cognitive development and student data privacy.</li>
+              <li><strong>UGC Directives:</strong> Higher education models must focus on conceptual problem-solving, discouraging passive textbook consumption.</li>
+              <li><strong>Retention Efficacy:</strong> Educational studies demonstrate that introducing productive Socratic friction raises final retention metrics by 40%.</li>
+            </ul>
+          </div>
+          <div class="glass-card">
+            <h4>Regulatory Sources & Verification Links</h4>
+            <div class="links-list-container">
+              <a href="https://www.aicte-india.org/" target="_blank" rel="noopener noreferrer" class="verified-link-pill">
+                <i data-lucide="external-link"></i> AICTE India Official Website
+              </a>
+              <a href="https://www.ugc.gov.in/" target="_blank" rel="noopener noreferrer" class="verified-link-pill">
+                <i data-lucide="external-link"></i> UGC India Governance Portal
+              </a>
+              <a href="https://psycnet.apa.org/doi/10.1037/0022-0663.100.2.222" target="_blank" rel="noopener noreferrer" class="verified-link-pill">
+                <i data-lucide="external-link"></i> APA PsycNet: Retrieval Practice Study
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRAMEWORKS -->
+  <section class="section" id="frameworks">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">04 — Frameworks</span>
+        <h2>Feasibility, Desirability, Viability (DFV)</h2>
+      </div>
+      <div class="grid grid-3 reveal">
+        <div class="glass-card card-accent-green">
+          <h4>Desirability</h4>
+          <p class="text-muted">High value for educators and concept-focused students. Cheating-focused users will experience friction. Opt-in setting toggle balances the core tension, retaining shortcut-seekers without forcing compliance.</p>
+        </div>
+        <div class="glass-card card-accent-blue">
+          <h4>Feasibility</h4>
+          <p class="text-muted">High feasibility using lightweight model classifiers and persona prompts. Avoids expensive foundation fine-tuning. Latency is minimized by caching routing profiles.</p>
+        </div>
+        <div class="glass-card card-accent-orange">
+          <h4>Viability</h4>
+          <p class="text-muted">Protects ChatGPT from national university bans. Establishes institutional sales tunnels (ChatGPT for Education) through certified compliance with AICTE/UGC codes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RICE PRIORITIZATION -->
+  <section class="section" id="rice">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">05 — Prioritization</span>
+        <h2>Interactive RICE Priorities</h2>
+        <p>Adjust reach, impact, confidence, and effort sliders to calculate RICE scores. Click headers to sort the candidates.</p>
+      </div>
+
+      <div class="calculator-container glass-card reveal">
+        <div class="sliders-panel">
+          <h4 id="calc-feature-title">Feature: Tutor Mode Toggle</h4>
+          
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Reach (User Target Scale)</span>
+              <span id="val-reach" class="slider-badge">3</span>
+            </div>
+            <input type="range" id="slide-reach" min="1" max="3" step="1" value="3">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Impact (0.5 = Low, 3 = High)</span>
+              <span id="val-impact" class="slider-badge">3</span>
+            </div>
+            <input type="range" id="slide-impact" min="0.5" max="3" step="0.5" value="3">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Confidence (%)</span>
+              <span id="val-confidence" class="slider-badge">70%</span>
+            </div>
+            <input type="range" id="slide-confidence" min="10" max="100" step="5" value="70">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Effort (Person-Months)</span>
+              <span id="val-effort" class="slider-badge">1</span>
+            </div>
+            <input type="range" id="slide-effort" min="1" max="5" step="0.5" value="1">
+          </div>
+        </div>
+
+        <div class="table-panel">
+          <table class="data-table" id="interactiveRiceTable">
+            <thead>
+              <tr>
+                <th class="sortable" data-col="name">Feature Candidate <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="reach">Reach <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="impact">Impact <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="confidence">Conf <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="effort">Effort <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="score">Score <i data-lucide="chevrons-up-down"></i></th>
+              </tr>
+            </thead>
+            <tbody id="rice-tbody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION DESIGN -->
+  <section class="section" id="solution">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">06 — Solution Design</span>
+        <h2>Interactive Tutor Simulator</h2>
+        <p>Toggle Tutor Mode to simulate the response behavior difference for a standard student query.</p>
+      </div>
+
+      <div class="tutor-simulator-container glass-card reveal">
+        <!-- Settings Area -->
+        <div class="simulator-settings">
+          <div class="settings-title">
+            <i data-lucide="sliders"></i> Settings
+          </div>
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="setting-name">Tutor Mode</span>
+              <span class="setting-desc">ChatGPT asks Socratic guiding questions for academic queries.</span>
+            </div>
+            <div class="toggle-switch-wrapper">
+              <button class="toggle-switch active" id="tutorToggle">
+                <span class="toggle-handle"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat Simulator Window -->
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="chat-header-details">
+              <div class="openai-logo-small"></div>
+              <span>ChatGPT 4o</span>
+            </div>
+            <span class="badge-status-tutor" id="tutorModeBadge">Tutor Mode Active</span>
+          </div>
+
+          <div class="chat-body" id="chatBody">
+            <!-- Messages rendered dynamically -->
+          </div>
+
+          <!-- Bottom bar indicator -->
+          <div class="chat-validation-indicator" id="confidenceIndicator">
+            <div class="indicator-marker green" id="indicatorMarker"></div>
+            <span id="indicatorText">High confidence. Verified across NCERT science standards.</span>
+          </div>
+
+          <!-- Input row simulator -->
+          <div class="chat-input-bar">
+            <div class="chat-input-placeholder" id="simulatedInputText">Explain Newton's second law and write a script to calculate acceleration.</div>
+            <button class="chat-send-btn" id="chatActionBtn" disabled><i data-lucide="play"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS METRICS -->
+  <section class="section" id="metrics">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">07 — Success Metrics</span>
+        <h2>Success Metrics Matrix</h2>
+      </div>
+
+      <div class="table-wrapper reveal">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Metric Type</th>
+              <th>Metric Name</th>
+              <th>Metric Definition</th>
+              <th>Strategic Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="metric-badge indicator-high">Leading</span></td>
+              <td><strong>Tutor Mode Opt-In Rate</strong></td>
+              <td>% of student accounts keeping Tutor Mode enabled.</td>
+              <td>Measures user desirability and setting retention.</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-high">Leading</span></td>
+              <td><strong>Multi-Turn Engagement Ratio</strong></td>
+              <td>% of academic sessions exceeding 3 turns.</td>
+              <td>Verifies dialogic learning behavior vs copy-paste.</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-high">Leading</span></td>
+              <td><strong>Quiz Acceptance CTR</strong></td>
+              <td>% of sessions selecting the concept validation test.</td>
+              <td>Tracks active verification willingness.</td>
+            </tr>
+            <tr class="highlight-row-chatgpt">
+              <td><span class="metric-badge indicator-moderate">Lagging</span></td>
+              <td><strong>Concept Mastery Accuracy</strong></td>
+              <td>Correct response rate in unseen, concept-check questions.</td>
+              <td>Direct validation of educational retention shift.</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-moderate">Lagging</span></td>
+              <td><strong>Institutional Adoption Count</strong></td>
+              <td>Number of universities adopting ChatGPT for Education.</td>
+              <td>Measures regulatory shield success and enterprise B2B sales.</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-low">Guardrail</span></td>
+              <td><strong>User Retention Rate (Session)</strong></td>
+              <td>Session duration drops or toggle-off rate within 5m.</td>
+              <td>Detects if Socratic friction triggers high competitor churn.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-disclaimer">Disclaimer: Independent case study created for educational and portfolio purposes. All product logos, brands, and guidelines are property of their respective owners.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

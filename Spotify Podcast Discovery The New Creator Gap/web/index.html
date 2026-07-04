@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Product Management case study on Spotify Podcast Discovery — solving the cold-start loop for new creators to stabilize supply and catalog diversity.">
+  <title>Spotify Podcast Discovery: The New Creator Gap — PM Case Study by Om Nawale</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%231DB954'/></svg>">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Portfolio Header & Project Selector (Includes Zomato Logo) -->
+  <header class="portfolio-header">
+    <div class="header-inner">
+      <a href="../../index.html" class="portfolio-home-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Portfolio
+      </a>
+      <div class="portfolio-owner">
+        <span class="owner-name">Om Nawale</span>
+        <span class="owner-title">Product Manager Portfolio</span>
+      </div>
+      <div class="project-selector">
+        <span class="selector-label">Projects:</span>
+        <a href="../../Zomato Gold Retention-Beyond Discounts/web/index.html" class="project-pill select-zomato">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#E23744"/>
+            <text x="50" y="62" font-family="Arial,sans-serif" font-weight="900" font-size="42" fill="white" text-anchor="middle">Z</text>
+          </svg>
+          <span>Zomato Gold</span>
+        </a>
+        <a href="#" class="project-pill select-spotify active">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#1DB954"/>
+            <path d="M70,38 C60,32 40,32 30,35 C28,36 26,34 25,32 C24,30 26,28 28,27 C40,24 64,24 75,30 C77,31 78,34 77,36 C76,38 72,39 70,38 Z" fill="white"/>
+            <path d="M65,48 C57,43 42,41 33,44 C31,45 29,43 28,41 C27,39 29,37 31,36 C42,33 59,35 68,40 C70,41 71,44 70,46 C69,48 67,49 65,48 Z" fill="white"/>
+            <path d="M60,58 C53,54 44,53 35,55 C33,56 31,54 30,52 C29,50 31,48 33,47 C43,45 53,46 59,50 C61,51 62,54 61,56 C60,58 58,59 60,58 Z" fill="white"/>
+          </svg>
+          <span>Spotify Discovery</span>
+        </a>
+        <a href="../../ChatGPT Academic Honesty for Indian Students/web/index.html" class="project-pill select-chatgpt">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#10a37f"/>
+            <path d="M68,42 C67,36 61,32 55,32 C52,32 49,33 47,35 C44,32 39,30 34,31 C28,32 24,37 23,43 C22,46 23,49 25,51 C22,54 21,59 22,64 C24,70 29,74 35,74 C38,74 41,73 43,71 C46,74 51,76 56,75 C62,74 66,69 67,63 C68,60 67,57 65,55 C68,52 69,47 68,42 Z" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>ChatGPT Honesty</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="48" fill="#1DB954"/>
+          <path d="M70,38 C60,32 40,32 30,35 C28,36 26,34 25,32 C24,30 26,28 28,27 C40,24 64,24 75,30 C77,31 78,34 77,36 C76,38 72,39 70,38 Z" fill="white"/>
+          <path d="M65,48 C57,43 42,41 33,44 C31,45 29,43 28,41 C27,39 29,37 31,36 C42,33 59,35 68,40 C70,41 71,44 70,46 C69,48 67,49 65,48 Z" fill="white"/>
+          <path d="M60,58 C53,54 44,53 35,55 C33,56 31,54 30,52 C29,50 31,48 33,47 C43,45 53,46 59,50 C61,51 62,54 61,56 C60,58 58,59 60,58 Z" fill="white"/>
+        </svg>
+        <span class="nav-logo-text">Spotify <span>Podcasts</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#executive-summary">Summary</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#creator-journey">Journey</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#circles">CIRCLES</a></li>
+        <li><a href="#rice">RICE</a></li>
+        <li><a href="#solution">Solution UI</a></li>
+        <li><a href="#metrics">Metrics</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Product Management Case Study
+      </div>
+      <h1>
+        Spotify Podcast Discovery<br>
+        <span class="highlight">The New Creator Gap</span>
+      </h1>
+      <p class="hero-subtitle">
+        How engagement-biased recommendation algorithms create a structural obscurity loop for small podcasts — and a product strategy to retain content supply.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <i data-lucide="user"></i>
+          Om Nawale
+        </div>
+        <div class="hero-meta-item">
+          <i data-lucide="calendar"></i>
+          June 2026
+        </div>
+        <div class="hero-meta-item">
+          <i data-lucide="clock"></i>
+          10 min read
+        </div>
+      </div>
+      <button class="hero-cta" onclick="document.getElementById('executive-summary').scrollIntoView({behavior:'smooth'})">
+        Read Case Study
+        <i data-lucide="chevron-down"></i>
+      </button>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section class="section" id="executive-summary">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">01 — Executive Summary</span>
+        <h2>The Strategic Thesis</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="glass-card card-accent-red reveal stagger-1">
+          <div class="card-icon"><i data-lucide="alert-circle"></i></div>
+          <h3>The Problem</h3>
+          <p>Spotify's recommendation algorithm relies on historical engagement (completion rate, saves) to make predictions. Newly launched shows have zero signals, making them invisible, driving a 90% creator churn rate.</p>
+        </div>
+        <div class="glass-card card-accent-green reveal stagger-2">
+          <div class="card-icon"><i data-lucide="compass"></i></div>
+          <h3>The Approach</h3>
+          <p>Build a structured exploration framework consisting of a dedicated, niche-targeted "New Voices" home screen shelf for listeners and an actionable "Discovery Health" portal for creators to optimize metadata.</p>
+        </div>
+        <div class="glass-card card-accent-blue reveal stagger-3">
+          <div class="card-icon"><i data-lucide="trending-up"></i></div>
+          <h3>Projected Impact</h3>
+          <p>Increase the Month 3 (M3) creator retention rate by 15–20% and stabilize catalog diversity. This secures Spotify's long-term defenses against search-first platforms like YouTube.</p>
+        </div>
+      </div>
+
+      <!-- Key Stats Dashboard -->
+      <div class="stats-row reveal stagger-4">
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="90" data-suffix="%">0</div>
+          <div class="stat-label">Do Not Pass Episode 3</div>
+          <div class="stat-source">Source: <a href="https://podnews.net/" target="_blank" rel="noopener noreferrer">Amplifi Media / Podnews</a></div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="10" data-suffix="%">0</div>
+          <div class="stat-label">Active Catalog Share</div>
+          <div class="stat-source">Source: <a href="https://www.buzzsprout.com/global_stats" target="_blank" rel="noopener noreferrer">Buzzsprout Benchmarks</a></div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="40" data-suffix="%+">0</div>
+          <div class="stat-label">Hosted via Spotify</div>
+          <div class="stat-source">Source: <a href="https://creators.spotify.com/" target="_blank" rel="noopener noreferrer">Spotify for Creators Portal</a></div>
+        </div>
+        <div class="glass-card stat-card">
+          <div class="stat-number" data-target="15" data-suffix="%">0</div>
+          <div class="stat-label">Target Exploration Ratio</div>
+          <div class="stat-source">Recommendation Optimization Limit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTEXT & PROBLEM -->
+  <section class="section" id="problem">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">02 — Context & Problem</span>
+        <h2>The Cold-Start Feedback Loop</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="reveal">
+          <div class="narrative-block">
+            <p>Spotify's podcast acquisition strategy (Anchor, Megaphone) successfully captured supply creation tools. However, the discovery engine presents a fundamental barrier. By optimizing for high-confidence metrics like completion rate, the machine learning system creates a "rich get richer" dynamic.</p>
+            <p>A new show has no baseline interactions, meaning it receives no algorithmic distribution. With zero surfaces, it accumulates no data, sentencing the creator to permanent obscurity. This causes rapid creator abandonment, degrading catalog diversity, which directly harms listener retention for specialized niche content.</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="loop-visual-container">
+            <div class="loop-step" id="step-1">
+              <span class="step-num">1</span>
+              <div>
+                <h5>Launch & Zero Signals</h5>
+                <p>New show uploaded with empty historical logs.</p>
+              </div>
+            </div>
+            <div class="loop-step" id="step-2">
+              <span class="step-num">2</span>
+              <div>
+                <h5>Algorithmic Exclusion</h5>
+                <p>Engine filters show out of recommendation feeds.</p>
+              </div>
+            </div>
+            <div class="loop-step" id="step-3">
+              <span class="step-num">3</span>
+              <div>
+                <h5>Zero Impressions</h5>
+                <p>Strangers cannot locate the podcast via browsing.</p>
+              </div>
+            </div>
+            <div class="loop-step" id="step-4">
+              <span class="step-num">4</span>
+              <div>
+                <h5>Creator Attrition</h5>
+                <p>Lack of feedback loops leads to podfade and account churn.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CREATOR JOURNEY MAP -->
+  <section class="section" id="creator-journey">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">03 — Creator Journey Map</span>
+        <h2>Where the Experience Breaks</h2>
+        <p>Follow a new creator's journey across a 10-episode lifecycle. Click the steps to trace the drop-off.</p>
+      </div>
+
+      <div class="journey-container glass-card reveal">
+        <div class="journey-navigation">
+          <button class="journey-nav-btn active" data-step="0">Ep 1: Launch</button>
+          <button class="journey-nav-btn" data-step="1">Ep 1: Stats</button>
+          <button class="journey-nav-btn" data-step="2">Ep 2: Publish</button>
+          <button class="journey-nav-btn" data-step="3">Ep 2: Stats</button>
+          <button class="journey-nav-btn" data-step="4">Ep 3: Promo</button>
+          <button class="journey-nav-btn" data-step="5">Ep 4: Growth?</button>
+          <button class="journey-nav-btn" data-step="6">Ep 5: Flatline</button>
+          <button class="journey-nav-btn" data-step="7">Breakpoint</button>
+          <button class="journey-nav-btn" data-step="8">Ep 10: Fatigue</button>
+          <button class="journey-nav-btn btn-danger" data-step="9">Quit</button>
+        </div>
+
+        <div class="journey-content-box">
+          <div class="journey-info-panel">
+            <h4 id="journey-title">Episode 1: Launch</h4>
+            <div class="journey-meta-row">
+              <span class="journey-indicator indicator-high" id="journey-energy"><i data-lucide="zap"></i> Energy: High</span>
+              <span class="journey-indicator indicator-low" id="journey-listeners"><i data-lucide="users"></i> Listeners: 0</span>
+            </div>
+            <p id="journey-description">Creator uploads the first episode. Expectations are high, and energy is focused on content creation and local distribution.</p>
+          </div>
+          <div class="journey-analysis-panel">
+            <h5>Product Diagnostic</h5>
+            <p id="journey-diagnostic">The baseline is active, but the metadata hasn't built any catalog relationships. There is no automated indexing trigger.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH FINDINGS -->
+  <section class="section" id="research">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">04 — Research Findings</span>
+        <h2>Primary & Secondary Diagnostics</h2>
+      </div>
+
+      <div class="research-tabs reveal">
+        <button class="tab-btn active" data-tab="creators">Creator Interviews</button>
+        <button class="tab-btn" data-tab="listeners">Listener Interviews</button>
+        <button class="tab-btn" data-tab="competitive">Competitive Scan</button>
+        <button class="tab-btn" data-tab="secondary">Secondary Data</button>
+      </div>
+
+      <!-- Panel: Creators -->
+      <div class="tab-panel active" id="panel-creators">
+        <div class="grid grid-2">
+          <div class="glass-card">
+            <h4>Cohort A: Small Creators</h4>
+            <p class="panel-meta">Sample Size: 8 Podcasters (<1 year, <500 listeners)</p>
+            <div class="input-placeholder-container" style="border-color: rgba(29, 185, 84, 0.2); background: rgba(29, 185, 84, 0.02)">
+              <div class="placeholder-tag" style="background: rgba(29, 185, 84, 0.1); color: var(--spotify-green-hover)"><i data-lucide="check"></i> Research Case Profile</div>
+              <p><strong>"Modern Carnatic Ragas Explained" (Chennai):</strong> Show age: 4 months. Averages 15 unique listeners per episode. 100% of traffic comes from direct messaging groups. Zero platform-driven discovery.</p>
+            </div>
+            <ul class="bullet-list text-muted">
+              <li>Analytics Obsession: Most check metrics multiple times daily in Month 1.</li>
+              <li>Promotion Exhaustion: Organic growth outside personal social circles is zero.</li>
+              <li>Algorithmic Obscurity: None of the 8 reported organic recommendations.</li>
+            </ul>
+          </div>
+          <div class="glass-card card-accent-red">
+            <h4>The Analytics Void</h4>
+            <blockquote class="research-quote">
+              <i class="quote-icon" data-lucide="quote"></i>
+              <p class="quote-text">"I spend 10 to 12 hours editing each episode, adjusting audio levels. I put it on Spotify, and I get 15 plays. Unless I manually post the link directly to my WhatsApp student groups, the stats stay at absolute zero. It feels like the algorithm requires you to already be famous to be shown."</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Listeners -->
+      <div class="tab-panel" id="panel-listeners">
+        <div class="grid grid-2">
+          <div class="glass-card">
+            <h4>Cohort B: Niche Listeners</h4>
+            <p class="panel-meta">Sample Size: 6 active listeners seeking specialized topics</p>
+            <div class="input-placeholder-container" style="border-color: rgba(61, 139, 255, 0.2); background: rgba(61, 139, 255, 0.02)">
+              <div class="placeholder-tag" style="background: rgba(61, 139, 255, 0.1); color: var(--accent-blue)"><i data-lucide="check"></i> Research Case Profile</div>
+              <p><strong>Niche Listener Log (Deep-Dive Tech Interest):</strong> Discovery path for last 3 shows: 2 from newsletter links (TLDR, Hacker News), 1 from guest cross-promotion. Zero from Spotify home recommendations.</p>
+            </div>
+            <ul class="bullet-list text-muted">
+              <li>Music vs. Podcast Gap: High trust in music algorithms, low trust in podcast recommendations.</li>
+              <li>Search Monopolies: Search listings are dominated by top-tier networks.</li>
+              <li>Manual Discovery: Find shows via newsletters, word-of-mouth, or third-party links.</li>
+            </ul>
+          </div>
+          <div class="glass-card card-accent-blue">
+            <h4>The Recommendation Disconnect</h4>
+            <blockquote class="research-quote">
+              <i class="quote-icon" data-lucide="quote"></i>
+              <p class="quote-text">"When I search for 'quantum computing,' Spotify's search returns corporate tech shows that discussed AI for 5 minutes. The real indie shows that dedicate hours to it are completely buried because they don't have thousands of reviews. It's highly frustrating."</p>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Competitive Scan -->
+      <div class="tab-panel" id="panel-competitive">
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Discovery Mechanism</th>
+                <th>Cold-Start Support</th>
+                <th>Creator Analytics</th>
+                <th>Key Insight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Spotify</strong></td>
+                <td>Algorithm + Editorial</td>
+                <td><span class="text-danger">Very Weak</span></td>
+                <td>Spotify for Creators</td>
+                <td>Dominant listening, broken discovery loop.</td>
+              </tr>
+              <tr>
+                <td><strong>Apple Podcasts</strong></td>
+                <td>Charts + Editorial Curation</td>
+                <td><span class="text-warning">Editorial Only</span></td>
+                <td>Basic Performance Metrics</td>
+                <td>Prioritizes legacy network reputation over topics.</td>
+              </tr>
+              <tr class="highlight-row-spotify">
+                <td><strong>YouTube</strong></td>
+                <td>Search-First + Interest Graph</td>
+                <td><span class="text-success">Strong (Test Budget)</span></td>
+                <td>YouTube Studio (Detailed)</td>
+                <td>Search-based indexing provides fairer cold starts.</td>
+              </tr>
+              <tr>
+                <td><strong>Amazon Music</strong></td>
+                <td>Collaborative Filtering</td>
+                <td><span class="text-danger">Minimal</span></td>
+                <td>Basic Metrics</td>
+                <td>Discovery features are unoptimized.</td>
+              </tr>
+              <tr>
+                <td><strong>Pocket Casts</strong></td>
+                <td>Manual Playlists + Charts</td>
+                <td><span class="text-danger">None</span></td>
+                <td>None</td>
+                <td>A player utility with no discovery layer.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="insight-callout">
+          <i data-lucide="lightbulb" style="color: #1DB954;"></i>
+          <p><strong>The Search-First Advantage:</strong> YouTube indexes keywords and auto-generated transcripts, allowing new creators to rank for specific search terms immediately. Spotify's recommendation-first system blocks new content until it builds interaction histories.</p>
+        </div>
+      </div>
+
+      <!-- Panel: Secondary Data -->
+      <div class="tab-panel" id="panel-secondary">
+        <div class="grid grid-2">
+          <div class="glass-card">
+            <h4>Reddit (r/podcasting) Patterns</h4>
+            <p class="text-muted">Top complaints cataloged from community search analysis:</p>
+            <ul class="bullet-list">
+              <li>"Algorithms are a black box for indie shows."</li>
+              <li>"Flatlined Spotify charts for months despite positive external reviews."</li>
+              <li>"Inability to see search ranking placement for niche terms."</li>
+            </ul>
+          </div>
+          <div class="glass-card">
+            <h4>App Store Reviews</h4>
+            <p class="text-muted">Review keywords matching "podcast" + "discover":</p>
+            <ul class="bullet-list">
+              <li>"App keeps recommending the same mainstream shows over and over."</li>
+              <li>"Podcast search is completely broken compared to music search."</li>
+              <li>"Hard to locate newly started niche channels."</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CIRCLES FRAMEWORK -->
+  <section class="section" id="circles">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">05 — Frameworks</span>
+        <h2>The CIRCLES Framework</h2>
+      </div>
+
+      <div class="circles-grid reveal">
+        <div class="glass-card circles-card card-accent-green">
+          <div class="circles-step-header">
+            <span class="circles-letter">C</span>
+            <h4>Comprehend Situation</h4>
+          </div>
+          <p>Focus on a two-sided marketplace. Solve the creator supply problem to protect long-term listener catalog engagement.</p>
+        </div>
+
+        <div class="glass-card circles-card">
+          <div class="circles-step-header">
+            <span class="circles-letter">I</span>
+            <h4>Identify Customer</h4>
+          </div>
+          <p>Primary: New indie creator (<6 months, <500 listeners). Secondary: Specialized interest listener.</p>
+        </div>
+
+        <div class="glass-card circles-card">
+          <div class="circles-step-header">
+            <span class="circles-letter">R</span>
+            <h4>Report Needs</h4>
+          </div>
+          <p>Creators require distribution signals and clear, transparent feedback. Listeners need high-relevance niche recommendations.</p>
+        </div>
+
+        <div class="glass-card circles-card">
+          <div class="circles-step-header">
+            <span class="circles-letter">C</span>
+            <h4>Cut Priorities</h4>
+          </div>
+          <p>Target the cold-start structural block. Focus resources on programmatic exploration rather than manual editorial curation.</p>
+        </div>
+
+        <div class="glass-card circles-card">
+          <div class="circles-step-header">
+            <span class="circles-letter">L</span>
+            <h4>List Solutions</h4>
+          </div>
+          <p>"New Voices" Home Shelf, Creator Optimization Dashboard, Algorithmic cold-start boost queue, Editorial form.</p>
+        </div>
+
+        <div class="glass-card circles-card">
+          <div class="circles-step-header">
+            <span class="circles-letter">E</span>
+            <h4>Evaluate Options</h4>
+          </div>
+          <p>RICE prioritized. Shelf on home + dashboard score dashboard selected as top paired features.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RICE PRIORITIZATION CALCULATOR -->
+  <section class="section" id="rice">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">06 — Prioritization</span>
+        <h2>Interactive RICE Calculator</h2>
+        <p>Adjust the sliders to edit RICE values and recalculate scores. Click column headers to sort.</p>
+      </div>
+
+      <div class="calculator-container glass-card reveal">
+        <div class="sliders-panel">
+          <h4 id="calc-feature-title">Feature: "New Voices" Shelf on Home</h4>
+          
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Reach (Unique Users/Mo)</span>
+              <span id="val-reach" class="slider-badge">3,000,000</span>
+            </div>
+            <input type="range" id="slide-reach" min="100000" max="5000000" step="100000" value="3000000">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Impact (Score 0.25 to 3)</span>
+              <span id="val-impact" class="slider-badge">2</span>
+            </div>
+            <input type="range" id="slide-impact" min="0.25" max="3" step="0.25" value="2">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Confidence (%)</span>
+              <span id="val-confidence" class="slider-badge">80%</span>
+            </div>
+            <input type="range" id="slide-confidence" min="10" max="100" step="5" value="80">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <span>Effort (Person-Months)</span>
+              <span id="val-effort" class="slider-badge">2</span>
+            </div>
+            <input type="range" id="slide-effort" min="0.5" max="12" step="0.5" value="2">
+          </div>
+        </div>
+
+        <div class="table-panel">
+          <table class="data-table" id="interactiveRiceTable">
+            <thead>
+              <tr>
+                <th class="sortable" data-col="name">Feature <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="reach">Reach <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="impact">Impact <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="confidence">Conf <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="effort">Effort <i data-lucide="chevrons-up-down"></i></th>
+                <th class="sortable" data-col="score">Score <i data-lucide="chevrons-up-down"></i></th>
+              </tr>
+            </thead>
+            <tbody id="rice-tbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION DESIGN -->
+  <section class="section" id="solution">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">07 — Solution Design</span>
+        <h2>Interactive Product Mockups</h2>
+        <p>Explore the proposed user interfaces for listeners (Home Screen Shelf) and creators (Discovery Dashboard).</p>
+      </div>
+
+      <div class="mockup-toggle-row reveal">
+        <button class="mock-toggle-btn active" data-mock="shelf"><i data-lucide="headphones"></i> Listener: Home Shelf</button>
+        <button class="mock-toggle-btn" data-mock="dashboard"><i data-lucide="layout-dashboard"></i> Creator: Discovery Health</button>
+      </div>
+
+      <!-- Mockup: Shelf -->
+      <div class="mockup-panel active" id="mock-shelf">
+        <div class="shelf-wrapper glass-card">
+          <div class="spotify-window-header">
+            <div class="window-dot red"></div>
+            <div class="window-dot yellow"></div>
+            <div class="window-dot green"></div>
+            <span class="window-title">Spotify Mobile App — Home</span>
+          </div>
+          <div class="spotify-content">
+            <h4 class="home-section-title">New Voices in Your Niche</h4>
+            <div class="shelf-scroll">
+              <div class="shelf-card">
+                <div class="card-art-box cover-1">
+                  <span class="new-badge">New Creator</span>
+                  <i data-lucide="play" class="play-overlay"></i>
+                </div>
+                <h5>Deep Climate Tech</h5>
+                <span class="card-tag">Climate & Science</span>
+                <span class="card-episodes">3 Episodes</span>
+              </div>
+              <div class="shelf-card">
+                <div class="card-art-box cover-2">
+                  <span class="new-badge">New Creator</span>
+                  <i data-lucide="play" class="play-overlay"></i>
+                </div>
+                <h5>Carnatic Ragas</h5>
+                <span class="card-tag">Music History</span>
+                <span class="card-episodes">2 Episodes</span>
+              </div>
+              <div class="shelf-card">
+                <div class="card-art-box cover-3">
+                  <span class="new-badge">New Creator</span>
+                  <i data-lucide="play" class="play-overlay"></i>
+                </div>
+                <h5>Indian Indie Founders</h5>
+                <span class="card-tag">Startup Stories</span>
+                <span class="card-episodes">4 Episodes</span>
+              </div>
+            </div>
+            
+            <div class="annotations-box">
+              <h5>Design Rationale & Annotations:</h5>
+              <ul class="bullet-list-small">
+                <li><strong>"New Creator" Badge:</strong> Manages listener expectation on audio style, reducing bias against indie production compared to large networks.</li>
+                <li><strong>Interest Niche Curation:</strong> Curated strictly by detailed tags matching listener profiles, skipping search-popularity filters.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mockup: Dashboard -->
+      <div class="mockup-panel" id="mock-dashboard">
+        <div class="dashboard-wrapper glass-card">
+          <div class="spotify-window-header">
+            <div class="window-dot red"></div>
+            <div class="window-dot yellow"></div>
+            <div class="window-dot green"></div>
+            <span class="window-title">Spotify for Creators Portal</span>
+          </div>
+          <div class="spotify-content">
+            <h4 class="home-section-title">Discovery Health Profile</h4>
+            <p class="dashboard-subtitle">Actionable checklist to increase your show's surface rankings.</p>
+            
+            <div class="dashboard-metric-rows">
+              <div class="metric-row active" data-metric="keywords">
+                <div class="metric-row-header">
+                  <span>Category & Keywords</span>
+                  <span class="metric-score score-medium" id="lbl-score-keywords">72/100</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill progress-medium" id="bar-score-keywords" style="width: 72%;"></div>
+                </div>
+              </div>
+
+              <div class="metric-row" data-metric="cadence">
+                <div class="metric-row-header">
+                  <span>Publishing Cadence</span>
+                  <span class="metric-score score-low" id="lbl-score-cadence">55/100</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill progress-low" id="bar-score-cadence" style="width: 55%;"></div>
+                </div>
+              </div>
+
+              <div class="metric-row" data-metric="description">
+                <div class="metric-row-header">
+                  <span>Description Quality</span>
+                  <span class="metric-score score-high" id="lbl-score-description">90/100</span>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill progress-high" id="bar-score-description" style="width: 90%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-details-box">
+              <div class="details-header">
+                <span id="detail-metric-title">Category & Keywords Analysis</span>
+                <span class="badge-status-update" id="lbl-rec-priority">Priority: Medium</span>
+              </div>
+              <p class="detail-description" id="detail-metric-advice">Your episode description lacks keywords matching your selected category. Add 3–4 terms related to your niche (e.g., "startup history") to boost indexing weight.</p>
+              
+              <div class="interactive-inputs-widget">
+                <label>Adjust Score value to preview recommendation state:</label>
+                <input type="range" id="score-adjuster" min="10" max="100" step="5" value="72">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- SUCCESS METRICS -->
+  <section class="section" id="metrics">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">08 — Success Metrics</span>
+        <h2>The Measurement Framework</h2>
+      </div>
+
+      <div class="table-wrapper reveal">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Metric Classification</th>
+              <th>Metric Name</th>
+              <th>Why It Matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="metric-badge indicator-high">Leading</span></td>
+              <td><strong>Creator Dashboard WAU</strong></td>
+              <td>Tracks developer engagement with discoverability recommendations.</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-high">Leading</span></td>
+              <td><strong>"New Voices" Shelf CTR</strong></td>
+              <td>Measures listener willingness to try newly surfaced creators.</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-high">Leading</span></td>
+              <td><strong>Avg. Listen Completion Rate (LCR)</strong></td>
+              <td>Validates whether the quality gate effectively filters out unpolished audio.</td>
+            </tr>
+            <tr class="highlight-row-spotify">
+              <td><span class="metric-badge indicator-moderate">Lagging</span></td>
+              <td><strong>90-Day Creator Retention Rate</strong></td>
+              <td>Primary business success metric (indicates lower creator attrition).</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-moderate">Lagging</span></td>
+              <td><strong>100+ Listener Conversion Rate</strong></td>
+              <td>Verifies if early impressions convert to sustainable show listeners.</td>
+            </tr>
+            <tr>
+              <td><span class="metric-badge indicator-low">Guardrail</span></td>
+              <td><strong>Session Listening Duration</strong></td>
+              <td>Ensures catalog diversification does not hurt overall time spent on app.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-disclaimer">Disclaimer: Independent case study created for educational/portfolio purposes. All product names, logos, and brands are property of their respective owners.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

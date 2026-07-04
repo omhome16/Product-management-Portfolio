@@ -1,0 +1,23 @@
+# System Files
+.DS_Store
+Thumbs.db
+
+# Editors & IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Local Server & Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vercel/
+
+# Temporary / OS
+tmp/
+temp/

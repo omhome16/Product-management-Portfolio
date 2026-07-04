@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Product Management case study on Zomato Gold retention — moving beyond discount-based loyalty to build food identity and habit-driven subscription value.">
+  <title>Zomato Gold: Retention Beyond Discounts — PM Case Study by Om Nawale</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='40' fill='%23F5C518'/><polygon points='50,25 57,40 73,43 61,54 65,70 50,62 35,70 39,54 27,43 43,40' fill='white'/></svg>">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div class="reading-progress" id="readingProgress"></div>
+
+  <!-- Portfolio Header & Project Selector -->
+  <header class="portfolio-header">
+    <div class="header-inner">
+      <a href="../../index.html" class="portfolio-home-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+        Portfolio
+      </a>
+      <div class="portfolio-owner">
+        <span class="owner-name">Om Nawale</span>
+        <span class="owner-title">Product Manager Portfolio</span>
+      </div>
+      <div class="project-selector">
+        <span class="selector-label">Projects:</span>
+        <a href="#" class="project-pill select-zomato active">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#E23744"/>
+            <text x="50" y="62" font-family="Arial,sans-serif" font-weight="900" font-size="42" fill="white" text-anchor="middle">Z</text>
+          </svg>
+          <span>Zomato Gold</span>
+        </a>
+        <a href="../../Spotify Podcast Discovery The New Creator Gap/web/index.html" class="project-pill select-spotify">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#1DB954"/>
+            <path d="M70,38 C60,32 40,32 30,35 C28,36 26,34 25,32 C24,30 26,28 28,27 C40,24 64,24 75,30 C77,31 78,34 77,36 C76,38 72,39 70,38 Z" fill="white"/>
+            <path d="M65,48 C57,43 42,41 33,44 C31,45 29,43 28,41 C27,39 29,37 31,36 C42,33 59,35 68,40 C70,41 71,44 70,46 C69,48 67,49 65,48 Z" fill="white"/>
+            <path d="M60,58 C53,54 44,53 35,55 C33,56 31,54 30,52 C29,50 31,48 33,47 C43,45 53,46 59,50 C61,51 62,54 61,56 C60,58 58,59 60,58 Z" fill="white"/>
+          </svg>
+          <span>Spotify Discovery</span>
+        </a>
+        <a href="../../ChatGPT Academic Honesty for Indian Students/web/index.html" class="project-pill select-chatgpt">
+          <svg class="project-logo" width="16" height="16" viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" fill="#10a37f"/>
+            <path d="M68,42 C67,36 61,32 55,32 C52,32 49,33 47,35 C44,32 39,30 34,31 C28,32 24,37 23,43 C22,46 23,49 25,51 C22,54 21,59 22,64 C24,70 29,74 35,74 C38,74 41,73 43,71 C46,74 51,76 56,75 C62,74 66,69 67,63 C68,60 67,57 65,55 C68,52 69,47 68,42 Z" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>ChatGPT Honesty</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <!-- Zomato-inspired logo -->
+        <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="48" fill="#E23744"/>
+          <text x="50" y="62" font-family="Arial,sans-serif" font-weight="900" font-size="42" fill="white" text-anchor="middle">Z</text>
+        </svg>
+        <span class="nav-logo-text">Zomato <span>Gold</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#executive-summary">Summary</a></li>
+        <li><a href="#pm-playbook">Playbook</a></li>
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#kano">Kano Model</a></li>
+        <li><a href="#rice">RICE</a></li>
+        <li><a href="#prd">PRD</a></li>
+        <li><a href="#churn-flow">Churn Flow</a></li>
+        <li><a href="#gold-pick">Gold Pick</a></li>
+        <li><a href="#metrics">Metrics</a></li>
+      </ul>
+      <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Product Management Case Study
+      </div>
+      <h1>
+        <span class="gold">Zomato Gold</span><br>
+        Retention <span class="accent">Beyond</span> Discounts
+      </h1>
+      <p class="hero-subtitle">
+        Why 12.1 million Gold subscribers churn rationally — and how a non-discount "habit layer" 
+        can fix what deeper discounts never will.
+      </p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></svg>
+          Om Nawale
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          June 2026
+        </div>
+        <div class="hero-meta-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          12 min read
+        </div>
+      </div>
+      <button class="hero-cta" onclick="document.getElementById('executive-summary').scrollIntoView({behavior:'smooth'})">
+        Read Case Study
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      </button>
+    </div>
+    <div class="hero-scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- EXECUTIVE SUMMARY -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="executive-summary">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">01 — Executive Summary</div>
+        <h2>The Three-Line Thesis</h2>
+      </div>
+      <div class="exec-grid">
+        <div class="glass-card glass-card-red exec-card reveal stagger-1">
+          <div class="exec-card-icon problem"><i data-lucide="alert-triangle"></i></div>
+          <h4>The Problem</h4>
+          <p>Zomato Gold's entire value prop is discount-based. When subscriber math tips unfavorable, churn isn't a failure — it's rational. And you can't fix rational churn with more discounts.</p>
+        </div>
+        <div class="glass-card exec-card reveal stagger-2">
+          <div class="exec-card-icon approach"><i data-lucide="compass"></i></div>
+          <h4>The Approach</h4>
+          <p>Add a non-discount "habit layer" — personalized Gold Picks, ML-driven churn intervention, and food identity features that address emotional and social Jobs-to-be-Done.</p>
+        </div>
+        <div class="glass-card glass-card-gold exec-card reveal stagger-3">
+          <div class="exec-card-icon impact"><i data-lucide="trending-up"></i></div>
+          <h4>Projected Impact</h4>
+          <p>Increase M3 renewal rate by 15–20% by giving subscribers a reason to stay that isn't just "you saved ₹340 on delivery this month."</p>
+        </div>
+      </div>
+
+      <!-- Key Stats -->
+      <div class="stats-row">
+        <div class="glass-card stat-card reveal stagger-1">
+          <div class="stat-number" data-target="12.1" data-suffix="M">0</div>
+          <div class="stat-label">Gold Subscribers</div>
+          <div class="sentiment-source">Source: <a href="https://eternal.co/investor-relations" target="_blank" rel="noopener noreferrer">Eternal Ltd. FY25 Annual Report</a></div>
+        </div>
+        <div class="glass-card stat-card reveal stagger-2">
+          <div class="stat-number" data-target="50" data-suffix="%+">0</div>
+          <div class="stat-label">Orders from Gold</div>
+          <div class="sentiment-source">Source: <a href="https://economictimes.indiatimes.com/" target="_blank" rel="noopener noreferrer">Economic Times, 2024</a></div>
+        </div>
+        <div class="glass-card stat-card reveal stagger-3">
+          <div class="stat-number" data-target="5.2" data-suffix="%">0</div>
+          <div class="stat-label">Adj. EBITDA Margin</div>
+          <div class="sentiment-source">Source: <a href="https://www.livemint.com/companies/news/eternal-q4-results-2025-net-profit-falls-78-yoy-to-rs-39-crore-revenue-surges-64-11746152345672.html" target="_blank" rel="noopener noreferrer">Q4 FY25 Earnings, LiveMint</a></div>
+        </div>
+        <div class="glass-card stat-card reveal stagger-4">
+          <div class="stat-number" data-target="14.90" data-prefix="₹">0</div>
+          <div class="stat-label">Platform Fee/Order</div>
+          <div class="sentiment-source">Source: <a href="https://www.reddit.com/r/india/comments/1ch332x/zomato_increases_platform_fee/" target="_blank" rel="noopener noreferrer">User reports, Reddit 2025</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PM PLAYBOOK — CASE APPROACH -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="pm-playbook">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">02 — My PM Playbook</div>
+        <h2>How I Approached This Problem</h2>
+        <p>A structured, product-first framework used to diagnostic, prioritize, and design the solution for Zomato Gold's churn dynamics.</p>
+      </div>
+
+      <div class="exec-grid">
+        <div class="glass-card reveal stagger-1">
+          <div class="exec-card-icon problem" style="margin: 0 auto var(--space-md) auto; width: 44px; height: 44px; background: rgba(226,55,68,0.1); color: var(--zomato-red); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);">
+            <i data-lucide="search"></i>
+          </div>
+          <h4 style="text-align: center; margin-bottom: var(--space-sm)">1. Diagnostic Discovery</h4>
+          <p style="text-align: center; font-size: 0.85rem">Scanned public sentiment communities (Reddit, Trustpilot, App Stores) to discover qualitative friction points. Validated complaints against Eternal Limited's official investor relations and NSE filings to ground the research in financial metrics.</p>
+        </div>
+
+        <div class="glass-card reveal stagger-2">
+          <div class="exec-card-icon approach" style="margin: 0 auto var(--space-md) auto; width: 44px; height: 44px; background: rgba(245,197,24,0.1); color: var(--zomato-gold); display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);">
+            <i data-lucide="git-branch"></i>
+          </div>
+          <h4 style="text-align: center; margin-bottom: var(--space-sm)">2. JTBD & Kano Synthesis</h4>
+          <p style="text-align: center; font-size: 0.85rem">Mapped raw user complaints to the Jobs-to-be-Done (JTBD) framework to identify functional vs. emotional gaps. Applied the Kano model to distinguish basic expectations from high-leverage "Delighter" opportunities.</p>
+        </div>
+
+        <div class="glass-card glass-card-gold reveal stagger-3">
+          <div class="exec-card-icon impact" style="margin: 0 auto var(--space-md) auto; width: 44px; height: 44px; background: rgba(52,199,89,0.1); color: #34C759; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);">
+            <i data-lucide="sliders"></i>
+          </div>
+          <h4 style="text-align: center; margin-bottom: var(--space-sm)">3. RICE & Tech Bridge</h4>
+          <p style="text-align: center; font-size: 0.85rem">Ranked candidate features using a clear RICE prioritization matrix. Drafted the technical specifications for model signals, threshold precision/recall criteria, and critical business guardrails.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- CONTEXT & PROBLEM — JTBD -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="problem">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">03 — Context & Problem</div>
+        <h2>Gold Only Solves <span class="text-gradient">One Job</span></h2>
+        <p>Using the Jobs-to-be-Done framework, Gold's structural fragility becomes obvious. Churn isn't a failure — it's rational. And that's the core product problem.</p>
+      </div>
+
+      <!-- Narrative -->
+      <div class="glass-card reveal" style="max-width:800px;margin-bottom:var(--space-2xl)">
+        <p style="font-size:1rem;line-height:1.9">
+          The typical Zomato Gold subscriber joins for a simple calculation: <em>"I order enough that free delivery + discounts will save me more than ₹299/month."</em> This is a purely <strong style="color:var(--text-primary)">functional job</strong>. There's no emotional attachment, no identity formation, no behavioral habit formed around being a "Gold member." 
+        </p>
+        <p style="font-size:1rem;line-height:1.9;margin-top:var(--space-md)">
+          When the math tips — fewer orders one month, a restaurant opting out of Gold, platform fees piling up — the subscriber cancels. They don't feel loss. They feel rational. <strong style="color:var(--zomato-red)">That's the problem.</strong> Swiggy One solves this better by bundling Instamart (grocery) into the subscription, making the switch cost higher without needing deeper discounts. Zomato needs a different angle.
+        </p>
+      </div>
+
+      <!-- JTBD Gap Map -->
+      <h3 class="reveal" style="margin-bottom:var(--space-lg)">Jobs-to-be-Done Gap Map</h3>
+      <div class="jtbd-visual">
+        <div class="glass-card jtbd-card reveal stagger-1">
+          <div class="jtbd-card-header">
+            <div class="jtbd-icon functional"><i data-lucide="settings"></i></div>
+            <h4>Functional Job</h4>
+          </div>
+          <p>"Order food without worrying about delivery fees and get the best prices."</p>
+          <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap">
+            <span class="jtbd-status covered">✓ Current Gold</span>
+            <span class="jtbd-status covered">✓ Proposed</span>
+          </div>
+          <p style="margin-top:var(--space-sm);font-size:0.78rem;color:var(--text-tertiary)">
+            This is the only job Gold currently addresses. Free delivery on orders ≥₹199 within 7km radius.
+          </p>
+        </div>
+
+        <div class="glass-card glass-card-red jtbd-card reveal stagger-2">
+          <div class="jtbd-card-header">
+            <div class="jtbd-icon emotional"><i data-lucide="heart"></i></div>
+            <h4>Emotional Job</h4>
+          </div>
+          <p>"Feel like a smart, savvy food person getting the best of my city's food scene."</p>
+          <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap">
+            <span class="jtbd-status gap">✗ Current Gold</span>
+            <span class="jtbd-status proposed">★ Gold Pick</span>
+          </div>
+          <p style="margin-top:var(--space-sm);font-size:0.78rem;color:var(--text-tertiary)">
+            Gold doesn't make you <em>feel</em> anything special. Proposed Gold Picks create food identity and personal discovery.
+          </p>
+        </div>
+
+        <div class="glass-card glass-card-gold jtbd-card reveal stagger-3">
+          <div class="jtbd-card-header">
+            <div class="jtbd-icon social"><i data-lucide="users"></i></div>
+            <h4>Social Job</h4>
+          </div>
+          <p>"Be someone who discovers new restaurants before my friends do."</p>
+          <div style="display:flex;gap:var(--space-sm);flex-wrap:wrap">
+            <span class="jtbd-status gap">✗ Current Gold</span>
+            <span class="jtbd-status proposed">★ Year in Food</span>
+          </div>
+          <p style="margin-top:var(--space-sm);font-size:0.78rem;color:var(--text-tertiary)">
+            Gold is invisible to others. "Year in Food" summaries and early access create shareable, social proof of food identity.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card reveal" style="margin-top:var(--space-2xl);border-left:3px solid var(--zomato-red);max-width:800px">
+        <p style="font-size:0.92rem;color:var(--text-primary);font-weight:500">
+          <i data-lucide="lightbulb" style="color:var(--zomato-gold);width:16px;height:16px;vertical-align:middle;margin-right:6px;display:inline-block"></i> <strong>The JTBD Insight:</strong> Gold currently addresses only the functional job. That's why it has low switching costs and rational churn. Emotional and social jobs create identity and attachment — which survive "the math doesn't work this month."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- RESEARCH FINDINGS -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="research">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">04 — Research Findings</div>
+        <h2>What the <span class="text-gradient">Data Says</span></h2>
+        <p>Cross-referenced public data from Eternal Ltd. earnings, Reddit, Trustpilot, Play Store reviews, and competitive analysis.</p>
+      </div>
+
+      <!-- Tabbed Research -->
+      <div class="research-tabs reveal" role="tablist">
+        <button class="research-tab active" data-tab="sentiment" role="tab">User Sentiment</button>
+        <button class="research-tab" data-tab="competitive" role="tab">Competitive Scan</button>
+        <button class="research-tab" data-tab="financials" role="tab">Financial Data</button>
+        <button class="research-tab" data-tab="appstore" role="tab">App Reviews</button>
+      </div>
+
+      <!-- Panel: User Sentiment -->
+      <div class="research-panel active" id="panel-sentiment">
+        <div class="sentiment-grid">
+          <div class="glass-card glass-card-red sentiment-card reveal stagger-1">
+            <div class="sentiment-emoji"><i data-lucide="trending-down"></i></div>
+            <div>
+              <h4>"The Illusion of Savings"</h4>
+              <p>Many users argue that delivery fees are waived for Gold, but non-Gold members receive larger direct discounts that effectively neutralize the price difference. Some users claim platforms adjust pricing for Gold members.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://www.reddit.com/r/india/" target="_blank" rel="noopener noreferrer">r/india</a>, <a href="https://www.reddit.com/r/bangalore/" target="_blank" rel="noopener noreferrer">r/bangalore</a> — Reddit, 2024–2025</div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal stagger-2">
+            <div class="sentiment-emoji"><i data-lucide="cloud-rain"></i></div>
+            <div>
+              <h4>Rain Surcharge on Gold Members</h4>
+              <p>In mid-2025, Zomato began charging rain surcharges even to Gold members — a perk previously waived. This broke trust in the "premium" positioning and was widely criticized.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://www.indiatoday.in/" target="_blank" rel="noopener noreferrer">India Today, May 2025</a></div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal stagger-3">
+            <div class="sentiment-emoji"><i data-lucide="indian-rupee"></i></div>
+            <div>
+              <h4>Platform Fee Frustration</h4>
+              <p>Platform fee rose from ₹2 to ~₹14.90 per order. Users feel paying a subscription + per-order platform fee is "double-dipping." Gold status provides no exemption.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://www.reddit.com/r/india/comments/1ch332x/zomato_increases_platform_fee/" target="_blank" rel="noopener noreferrer">Reddit r/india, user reports — 2025–2026</a></div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal stagger-4">
+            <div class="sentiment-emoji"><i data-lucide="bot"></i></div>
+            <div>
+              <h4>AI Chatbot Support Loops</h4>
+              <p>Gold members report no priority customer support. Users get trapped in automated chatbot loops that fail to resolve incorrect orders, refund disputes, or delivery issues.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://www.trustpilot.com/review/zomato.com" target="_blank" rel="noopener noreferrer">Trustpilot</a>, <a href="https://play.google.com/store/apps/details?id=com.application.zomato" target="_blank" rel="noopener noreferrer">Play Store</a> — 2024–2025</div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal stagger-5">
+            <div class="sentiment-emoji"><i data-lucide="lock"></i></div>
+            <div>
+              <h4>Dark Pattern Cancellation UX</h4>
+              <p>Users report difficulty finding the cancellation option. Interface appears designed to make accidental renewals more likely. CCPA has taken notice of unfair trade practices on food delivery platforms.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://www.business-standard.com/" target="_blank" rel="noopener noreferrer">Business Standard, June 2025</a> · <a href="https://consumeraffairs.nic.in/sites/default/files/CP%20Act%20Notification/Guidelines-Dark-Patterns.pdf" target="_blank" rel="noopener noreferrer">CCPA Guidelines</a></div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal">
+            <div class="sentiment-emoji"><i data-lucide="scale"></i></div>
+            <div>
+              <h4>Shrinking Restaurant Coverage</h4>
+              <p>Long-term users note that the number of partner restaurants offering significant Gold discounts has decreased. Restaurants are opting out of the program, reducing perceived value.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://www.reddit.com/" target="_blank" rel="noopener noreferrer">Reddit r/mumbai, r/bangalore</a> — 2024–2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel: Competitive Scan -->
+      <div class="research-panel" id="panel-competitive">
+        <div class="comp-table-wrapper reveal">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Subscription</th>
+                <th>Price/month</th>
+                <th>Core Perks</th>
+                <th>Unique Differentiator</th>
+                <th>Retention Strength</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row">
+                <td>
+                  <strong style="color:var(--text-primary)">Zomato Gold</strong>
+                </td>
+                <td>₹250–399</td>
+                <td>Free delivery (≥₹199, ≤7km) + dining discounts (up to 30%)</td>
+                <td>Wide restaurant coverage, dining-out focus</td>
+                <td><span class="comp-badge weak">Weak — discount-dependent</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong style="color:var(--text-primary)">Swiggy One</strong>
+                </td>
+                <td>₹149–399</td>
+                <td>Free delivery + member prices + Instamart delivery</td>
+                <td>Instamart (grocery) + Genie bundled</td>
+                <td><span class="comp-badge strong">Strong — daily utility</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong style="color:var(--text-primary)">Swiggy One BLCK</strong>
+                </td>
+                <td>₹299/3mo (invite-only)</td>
+                <td>On-time guarantee + priority support + partner perks</td>
+                <td>Amazon Prime, Disney+ Hotstar bundled privileges</td>
+                <td><span class="comp-badge strong">Strong — multi-service lock-in</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <strong style="color:var(--text-primary)">Magicpin (ONDC)</strong>
+                </td>
+                <td>Free (rewards-based)</td>
+                <td>MagicPoints cashback + ONDC delivery (lower fees)</td>
+                <td>No subscription fee; earn-to-save model</td>
+                <td><span class="comp-badge moderate">Moderate — niche positioning</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="glass-card reveal" style="margin-top:var(--space-lg);border-left:3px solid var(--zomato-gold)">
+          <p style="font-size:0.88rem;color:var(--text-primary);font-weight:500">
+            <i data-lucide="key" style="color:var(--zomato-gold);width:16px;height:16px;vertical-align:middle;margin-right:6px;display:inline-block"></i> <strong>Strategic Insight:</strong> Swiggy is winning on <em>bundled daily utility</em> (grocery + food + logistics). Zomato can't out-bundle Swiggy — Blinkit is a separate entity. The defensible angle for Zomato is <strong style="color:var(--zomato-gold)">food identity and curation</strong>, which Swiggy doesn't own.
+          </p>
+          <div class="sentiment-source" style="margin-top:8px">Sources: <a href="https://www.swiggy.com/" target="_blank">Swiggy.com</a>, <a href="https://www.fortuneindia.com/" target="_blank">FortuneIndia</a>, <a href="https://economictimes.indiatimes.com/" target="_blank">EconomicTimes</a>, <a href="https://magicpin.in/" target="_blank">Magicpin.in</a> — 2024–2025</div>
+        </div>
+      </div>
+
+      <!-- Panel: Financial Data -->
+      <div class="research-panel" id="panel-financials">
+        <div class="glass-card reveal" style="overflow-x:auto">
+          <table class="comp-table" style="margin:0">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Value</th>
+                <th>Period</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Active Gold Members</strong></td>
+                <td><strong style="color:var(--zomato-gold)">12.1 million</strong></td>
+                <td>March 2025</td>
+                <td><a href="https://eternal.co/investor-relations" target="_blank">Eternal Ltd. Annual Report, NSE India</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Gold Members (prior year)</strong></td>
+                <td>7.4 million</td>
+                <td>March 2024</td>
+                <td><a href="https://economictimes.indiatimes.com/" target="_blank">Economic Times</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">YoY Growth</strong></td>
+                <td><strong style="color:#34C759">+63.5%</strong></td>
+                <td>FY24 → FY25</td>
+                <td>Calculated from above</td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Gold Share of Food Orders</strong></td>
+                <td>>50%</td>
+                <td>FY24</td>
+                <td><a href="https://economictimes.indiatimes.com/" target="_blank">Economic Times</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Consolidated Revenue</strong></td>
+                <td>₹21,320 Cr</td>
+                <td>FY25</td>
+                <td><a href="https://eternal.co/investor-relations" target="_blank">Eternal Ltd. Annual Report</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Q4 FY25 Revenue</strong></td>
+                <td>₹5,833 Cr (+64% YoY)</td>
+                <td>Q4 FY25</td>
+                <td><a href="https://www.livemint.com/companies/news/eternal-q4-results-2025-net-profit-falls-78-yoy-to-rs-39-crore-revenue-surges-64-11746152345672.html" target="_blank">LiveMint</a>, <a href="https://entrackr.com/" target="_blank">Entrackr</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Food Delivery Adj. EBITDA Margin</strong></td>
+                <td>5.2% of NOV (up from 3.8%)</td>
+                <td>Q4 FY25</td>
+                <td><a href="https://www.livemint.com/companies/news/eternal-q4-results-2025-net-profit-falls-78-yoy-to-rs-39-crore-revenue-surges-64-11746152345672.html" target="_blank">LiveMint</a>, <a href="https://www.businesstoday.in/" target="_blank">BusinessToday</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Subscription Revenue Contribution</strong></td>
+                <td>~10% of total (est.)</td>
+                <td>FY25</td>
+                <td><a href="https://miracuves.com/" target="_blank">Miracuves industry estimates</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Platform Fee per Order</strong></td>
+                <td>~₹14.90</td>
+                <td>Early 2026</td>
+                <td><a href="https://www.reddit.com/r/india/comments/1ch332x/zomato_increases_platform_fee/" target="_blank">User reports, Reddit</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color:var(--text-primary)">Internal Repeat Order Target</strong></td>
+                <td>>40% within 30 days</td>
+                <td>Ongoing</td>
+                <td><a href="https://www.reelo.io/" target="_blank">Reelo.io industry analysis</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sentiment-source reveal" style="margin-top:var(--space-md)">
+          <i data-lucide="info" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> Corporate entity rebranded to <strong>Eternal Limited</strong> in March 2025. Reports filed on <a href="https://www.nseindia.com/" target="_blank">NSE India</a> and <a href="https://eternal.co/investor-relations" target="_blank">eternal.com investor relations portal</a>.
+        </div>
+      </div>
+
+      <!-- Panel: App Reviews -->
+      <div class="research-panel" id="panel-appstore">
+        <div class="sentiment-grid">
+          <div class="glass-card sentiment-card reveal stagger-1">
+            <div class="sentiment-emoji" style="color:var(--zomato-gold)"><i data-lucide="star"></i></div>
+            <div>
+              <h4>High Aggregate, Low Trust</h4>
+              <p>Zomato maintains a 4.7★ aggregate on Play Store, but Gold-specific reviewers skew negative. The high rating is carried by casual users, not power subscribers.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://play.google.com/store/apps/details?id=com.application.zomato" target="_blank">Google Play Store, 2024–2025</a></div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal stagger-2">
+            <div class="sentiment-emoji"><i data-lucide="smartphone"></i></div>
+            <div>
+              <h4>Trustpilot: 1.6★ Average</h4>
+              <p>On Trustpilot, where self-selecting reviewers trend negative, Zomato averages just 1.6 stars. Dominant complaints: refund delays, chatbot-only support, delivery quality decline.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://www.trustpilot.com/review/zomato.com" target="_blank">Trustpilot.com — Zomato profile, 2024–2025</a></div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal stagger-3">
+            <div class="sentiment-emoji"><i data-lucide="store"></i></div>
+            <div>
+              <h4>App Store iOS Reviews</h4>
+              <p>iOS reviewers report similar themes: Gold membership "doesn't feel premium," support is unhelpful for wrong orders, and fees accumulate despite subscription.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://apps.apple.com/in/app/zomato-food-delivery-dining/id434613896" target="_blank">Apple App Store, filtered "Gold" — 2024–2025</a></div>
+            </div>
+          </div>
+          <div class="glass-card sentiment-card reveal stagger-4">
+            <div class="sentiment-emoji" style="color:var(--zomato-red)"><i data-lucide="alert-triangle"></i></div>
+            <div>
+              <h4>Government Scrutiny (CCPA)</h4>
+              <p>By mid-2025, the Central Consumer Protection Authority (CCPA) took notice of unfair trade practices on food delivery platforms — including cancellation charges and dark-pattern renewal flows.</p>
+              <div class="sentiment-source"><i data-lucide="link" style="width:12px;height:12px;display:inline-block;vertical-align:middle;margin-right:2px"></i> <a href="https://consumeraffairs.nic.in/sites/default/files/CP%20Act%20Notification/Guidelines-Dark-Patterns.pdf" target="_blank">CCPA Dark Patterns Guidelines</a>, <a href="https://www.business-standard.com/" target="_blank">Business Standard, June 2025</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- KANO MODEL -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="kano">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">05 — Kano Model Application</div>
+        <h2>From Zero Delighters to <span class="text-gradient">Delight-Led</span></h2>
+        <p>Gold is 100% Basic + Performance features. Moving to Delighter-led means building features that create positive emotion and surprise — the features that survive a bad month.</p>
+      </div>
+
+      <!-- Kano Chart -->
+      <div class="kano-chart-container reveal">
+        <div class="kano-chart" id="kanoChart">
+          <!-- Axes -->
+          <div class="kano-axis kano-axis-x"></div>
+          <div class="kano-axis kano-axis-y"></div>
+
+          <!-- Labels -->
+          <div class="kano-label kano-label-top"><i data-lucide="smile" style="color:#34C759;width:14px;height:14px;vertical-align:middle;margin-right:4px"></i> Satisfaction</div>
+          <div class="kano-label kano-label-bottom"><i data-lucide="frown" style="color:var(--zomato-red);width:14px;height:14px;vertical-align:middle;margin-right:4px"></i> Dissatisfaction</div>
+          <div class="kano-label kano-label-left">Not Present</div>
+          <div class="kano-label kano-label-right">Fully Present</div>
+
+          <!-- Zones -->
+          <div class="kano-zone kano-zone-delight">Delight Zone</div>
+          <div class="kano-zone kano-zone-basic">Must-Have Zone</div>
+
+          <!-- Data points will be positioned via JS -->
+        </div>
+        <div class="kano-legend">
+          <div class="kano-legend-item">
+            <div class="kano-legend-dot current"></div>
+            Current Gold Features
+          </div>
+          <div class="kano-legend-item">
+            <div class="kano-legend-dot proposed"></div>
+            Proposed Delighters
+          </div>
+        </div>
+      </div>
+
+      <!-- Kano Breakdown Cards -->
+      <div class="exec-grid" style="margin-top:var(--space-2xl)">
+        <div class="glass-card reveal stagger-1">
+          <h4 style="color:var(--zomato-red);margin-bottom:var(--space-md)">Must-Have (Basic Expectations)</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-sm)">
+            <li style="font-size:0.85rem;color:var(--text-secondary);padding:8px 12px;background:var(--bg-glass);border-radius:var(--radius-sm)">Free delivery on eligible orders</li>
+            <li style="font-size:0.85rem;color:var(--text-secondary);padding:8px 12px;background:var(--bg-glass);border-radius:var(--radius-sm)">Priority customer service</li>
+          </ul>
+          <p style="font-size:0.78rem;margin-top:var(--space-md);color:var(--text-tertiary)">Removing these causes immediate churn. Improving them does not motivate renewal.</p>
+        </div>
+        <div class="glass-card reveal stagger-2">
+          <h4 style="color:var(--zomato-gold);margin-bottom:var(--space-md)">Performance (Linear Utility)</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-sm)">
+            <li style="font-size:0.85rem;color:var(--text-secondary);padding:8px 12px;background:var(--bg-glass);border-radius:var(--radius-sm)">Restaurant discounts / B1G1 options</li>
+            <li style="font-size:0.85rem;color:var(--text-secondary);padding:8px 12px;background:var(--bg-glass);border-radius:var(--radius-sm)">Number of active partner restaurants</li>
+          </ul>
+          <p style="font-size:0.78rem;margin-top:var(--space-md);color:var(--text-tertiary)">More restaurants & deeper discounts increase satisfaction, but have a high marginal cost ceiling.</p>
+        </div>
+        <div class="glass-card glass-card-gold reveal stagger-3">
+          <h4 style="color:#34C759;margin-bottom:var(--space-md)">Delighters (Proposed Habit Layer)</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:var(--space-sm)">
+            <li style="font-size:0.85rem;color:var(--text-secondary);padding:8px 12px;background:var(--bg-glass);border-radius:var(--radius-sm);display:flex;align-items:center;gap:8px"><i data-lucide="award" style="color:var(--zomato-gold);width:16px;height:16px"></i> Gold Picks — monthly restaurant perk</li>
+            <li style="font-size:0.85rem;color:var(--text-secondary);padding:8px 12px;background:var(--bg-glass);border-radius:var(--radius-sm);display:flex;align-items:center;gap:8px"><i data-lucide="rocket" style="color:var(--zomato-red-light);width:16px;height:16px"></i> Early access to new restaurant launches</li>
+            <li style="font-size:0.85rem;color:var(--text-secondary);padding:8px 12px;background:var(--bg-glass);border-radius:var(--radius-sm);display:flex;align-items:center;gap:8px"><i data-lucide="bar-chart-2" style="color:#34C759;width:16px;height:16px"></i> "Year in Food" annual summary</li>
+          </ul>
+          <p style="font-size:0.78rem;margin-top:var(--space-md);color:var(--text-tertiary)">Unexpected, builds strong food identity, and establishes behavioral habits that survive rational cost math.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- RICE TABLE -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="rice">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">06 — RICE Prioritization</div>
+        <h2>What to <span class="text-gradient">Build First</span></h2>
+        <p>Features scored on Reach, Impact, Confidence, and Effort. Click column headers to sort.</p>
+      </div>
+
+      <div class="rice-table-wrapper reveal">
+        <table class="rice-table" id="riceTable">
+          <thead>
+            <tr>
+              <th data-sort="feature">Feature <span class="sort-icon">⇅</span></th>
+              <th data-sort="reach">Reach <span class="sort-icon">⇅</span></th>
+              <th data-sort="impact">Impact <span class="sort-icon">⇅</span></th>
+              <th data-sort="confidence">Confidence <span class="sort-icon">⇅</span></th>
+              <th data-sort="effort">Effort <span class="sort-icon">⇅</span></th>
+              <th data-sort="score">Score <span class="sort-icon">⇅</span></th>
+              <th data-sort="decision">Decision <span class="sort-icon">⇅</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-reach="3" data-impact="3" data-confidence="2" data-effort="2" data-score="3" data-decision="1">
+              <td><strong style="color:var(--text-primary)">Personalized "Gold Pick" monthly perk</strong></td>
+              <td>High</td>
+              <td>High</td>
+              <td>Medium</td>
+              <td>Medium</td>
+              <td><span class="rice-score high">HIGH</span></td>
+              <td><span class="rice-decision build">Build First</span></td>
+            </tr>
+            <tr data-reach="3" data-impact="3" data-confidence="2" data-effort="3" data-score="3" data-decision="1">
+              <td><strong style="color:var(--text-primary)">ML churn prediction + proactive intervention</strong></td>
+              <td>High</td>
+              <td>High</td>
+              <td>Medium</td>
+              <td>High</td>
+              <td><span class="rice-score high">HIGH</span></td>
+              <td><span class="rice-decision build">Build First</span></td>
+            </tr>
+            <tr data-reach="2" data-impact="3" data-confidence="1" data-effort="3" data-score="2" data-decision="2">
+              <td><strong style="color:var(--text-primary)">Gold-exclusive menu items at partners</strong></td>
+              <td>Medium</td>
+              <td>High</td>
+              <td>Low</td>
+              <td>High</td>
+              <td><span class="rice-score medium">MEDIUM</span></td>
+              <td><span class="rice-decision phase2">Phase 2</span></td>
+            </tr>
+            <tr data-reach="2" data-impact="3" data-confidence="2" data-effort="1" data-score="2" data-decision="2">
+              <td><strong style="color:var(--text-primary)">"Year in Food" annual summary (Wrapped-style)</strong></td>
+              <td>Medium</td>
+              <td>High</td>
+              <td>Medium</td>
+              <td>Low</td>
+              <td><span class="rice-score medium">MEDIUM</span></td>
+              <td><span class="rice-decision phase2">Phase 2</span></td>
+            </tr>
+            <tr data-reach="1" data-impact="2" data-confidence="1" data-effort="2" data-score="1" data-decision="3">
+              <td><strong style="color:var(--text-primary)">Food explorer streak / gamification</strong></td>
+              <td>Low</td>
+              <td>Medium</td>
+              <td>Low</td>
+              <td>Medium</td>
+              <td><span class="rice-score low">LOW</span></td>
+              <td><span class="rice-decision backlog">Backlog</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PRD -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="prd">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">07 — PRD Excerpt</div>
+        <h2>Zomato Gold <span class="text-gradient">Habit Layer</span></h2>
+        <p>Product Requirements Document — concept and discovery phase.</p>
+      </div>
+
+      <div class="prd-container reveal">
+        <div class="prd-header">
+          <div class="prd-dot red"></div>
+          <div class="prd-dot yellow"></div>
+          <div class="prd-dot green"></div>
+          <span class="prd-title">prd_zomato_gold_habit_layer.md</span>
+        </div>
+        <div class="prd-body">
+          <div class="prd-section-title">1. OVERVIEW</div>
+          <p>Add a non-discount retention layer to Zomato Gold that builds food identity and ordering habit, reducing churn among subscribers whose discount math becomes unfavorable month-to-month.</p>
+
+          <hr class="prd-divider">
+          <div class="prd-section-title">2. PROBLEM</div>
+          <p>Zomato Gold's value proposition is entirely discount-based, creating rational churn whenever subscribers perceive the discount value as less than the subscription cost. Gold currently only addresses the <span class="prd-key">functional JTBD</span> ("avoid delivery fees") without addressing the <span class="prd-key">emotional JTBD</span> ("feel like a savvy food person") or <span class="prd-key">social JTBD</span> ("discover restaurants before my friends"). This creates low switching costs and high sensitivity to any change in perceived discount value.</p>
+          <p style="margin-top:8px"><span class="prd-key">Evidence:</span> <span class="prd-value">12.1M Gold subscribers (FY25), >50% of food orders, but rising platform fees (₹14.90/order) and rain surcharges eroding perceived value. Reddit/Trustpilot sentiment shows "not worth it" as dominant Gold-specific complaint. Swiggy One's grocery bundling creates structurally stronger retention.</span></p>
+
+          <hr class="prd-divider">
+          <div class="prd-section-title">3. GOALS & METRICS</div>
+          <p><span class="prd-key">Goal 1:</span> <span class="prd-value">Increase M3 renewal rate (Month 3 = highest churn window)</span></p>
+          <ul><li>Metric: M3 subscription renewal rate vs. current baseline</li></ul>
+          <p><span class="prd-key">Goal 2:</span> <span class="prd-value">Increase "non-discount-driven" ordering behavior</span></p>
+          <ul><li>Metric: % of Gold orders placed without active promotion, MoM trend</li></ul>
+          <p><span class="prd-key">Goal 3:</span> <span class="prd-value">Improve Gold NPS vs. regular Zomato NPS</span></p>
+          <ul><li>Metric: Gold-specific NPS (add "as a Gold member" framing to NPS prompt)</li></ul>
+
+          <hr class="prd-divider">
+          <div class="prd-section-title">4. NON-GOALS</div>
+          <ul>
+            <li>Does not change the discount structure or subscription price</li>
+            <li>Does not address Instamart/Blinkit integration (separate entity/roadmap)</li>
+            <li>Does not change restaurant acquisition or B2B partner agreements</li>
+          </ul>
+
+          <hr class="prd-divider">
+          <div class="prd-section-title">5. USER STORIES</div>
+          <p><span class="prd-key">US-1:</span> As a Gold subscriber, I want exclusive access non-subscribers don't get, so my membership feels like an identity — not just a coupon code.</p>
+          <p><span class="prd-key">US-2:</span> As a food-curious subscriber, I want Zomato to surface restaurants I wouldn't find myself, so Gold actively expands my food world.</p>
+          <p><span class="prd-key">US-3:</span> As a subscriber approaching renewal, I want a reason to stay that isn't just savings math, so I feel genuine loss if I cancel.</p>
+
+          <hr class="prd-divider">
+          <div class="prd-section-title">6. REQUIREMENTS</div>
+          <p><span class="prd-key">Must-have:</span></p>
+          <ul>
+            <li><span class="prd-value">"Gold Pick"</span> — Monthly personalized restaurant recommendation with exclusive perk (member-only dish, free dessert, or priority table). Appears as home screen card from 1st of each month.</li>
+            <li><span class="prd-value">ML churn prediction</span> — Score each Gold subscriber for churn probability 21 days before renewal. High-risk (>70%): trigger personalized perk offer, not a generic discount.</li>
+            <li><span class="prd-value">Proactive intervention flow</span> — Push + email for high-churn-risk subscribers, 21 days before renewal. Personal, not a "don't cancel" blast.</li>
+          </ul>
+          <p style="margin-top:12px"><span class="prd-key">Nice-to-have:</span></p>
+          <ul>
+            <li>Gold early access: new restaurant launches available 48h before general listing</li>
+            <li>"Year in Food" annual summary: top cuisine, most visited restaurant, food personality type, shareable card</li>
+            <li>Explorer streak: gentle in-app recognition for trying new cuisine categories</li>
+          </ul>
+
+          <hr class="prd-divider">
+          <div class="prd-section-title">7. RISKS & OPEN QUESTIONS</div>
+          <p><span class="prd-key">Risk 1:</span> Gold Picks require restaurant partner agreements → longer lead time.<br>
+          <span class="prd-value">Mitigation: Start with 10–15 anchor partners/city in Phase 1.</span></p>
+          <p><span class="prd-key">Risk 2:</span> ML churn model requires clean historical behavioral data with labelled churn events.<br>
+          <span class="prd-value">Open Q: Does Zomato have sufficient Gold data or is this a cold-start ML problem?</span></p>
+          <p><span class="prd-key">Risk 3:</span> Gold-exclusive perks may feel unequal to non-Gold users.<br>
+          <span class="prd-value">Mitigation: Perks should be additive (extra dish, priority) — not price-discriminatory.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- CHURN INTERVENTION FLOW -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="churn-flow">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">08 — ML Churn Intervention Flow</div>
+        <h2>From Score to <span class="text-gradient">Save</span></h2>
+        <p>The ML model doesn't just predict churn — it outputs a reason code that determines which intervention to trigger.</p>
+      </div>
+
+      <div class="flow-container" id="churnFlow">
+        <!-- Step 1 -->
+        <div class="flow-step">
+          <div class="flow-node process">
+            <strong><i data-lucide="cpu" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;color:var(--zomato-red)"></i> ML Model Scores Subscribers Daily</strong><br>
+            <span style="font-size:0.78rem;color:var(--text-tertiary)">Signals: order frequency trend, % promo-driven orders, session-without-order rate, days to renewal</span>
+          </div>
+        </div>
+        <div class="flow-step"><div class="flow-arrow"></div></div>
+
+        <!-- Step 2 -->
+        <div class="flow-step">
+          <div class="flow-node process" style="background:rgba(226,55,68,0.06);border-color:var(--border-accent)">
+            <strong><i data-lucide="search" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;color:var(--zomato-gold)"></i> Churn Probability Score + Reason Code</strong><br>
+            <span style="font-size:0.78rem;color:var(--text-tertiary)">Output: probability % + reason (declining frequency | discount dependency | competitor signal)</span>
+          </div>
+        </div>
+        <div class="flow-step"><div class="flow-arrow"></div></div>
+
+        <!-- Step 3: Decision -->
+        <div class="flow-step">
+          <div class="flow-node action" style="text-align:center">
+            <strong><i data-lucide="zap" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;color:#34C759"></i> Score > 70%?</strong>
+          </div>
+        </div>
+        <div class="flow-step"><div class="flow-arrow"></div></div>
+
+        <!-- Step 4: Branch -->
+        <div class="flow-step">
+          <div class="flow-branch">
+            <div>
+              <div class="flow-label" style="color:#34C759">✓ YES — High Risk</div>
+              <div class="flow-node action" style="font-size:0.82rem">
+                <strong>🔔 Flag in CRM Dashboard</strong><br>
+                21 days before renewal
+              </div>
+              <div class="flow-arrow" style="height:24px"></div>
+              <div class="flow-node action" style="font-size:0.82rem;background:rgba(245,197,24,0.1);border-color:rgba(245,197,24,0.3)">
+                <strong><i data-lucide="gift" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;color:var(--zomato-gold)"></i> Personalized Perk Push</strong><br>
+                "Your Gold Pick this month includes a surprise from [Restaurant]"
+              </div>
+              <div class="flow-arrow" style="height:24px"></div>
+              <div class="flow-node outcome" style="font-size:0.82rem">
+                <strong><i data-lucide="trending-up" style="width:16px;height:16px;vertical-align:middle;margin-right:6px;color:#34C759"></i> Track Outcome</strong><br>
+                Did subscriber redeem? Did they renew?
+              </div>
+            </div>
+            <div>
+              <div class="flow-label" style="color:var(--text-tertiary)">✗ NO — Standard Risk</div>
+              <div class="flow-node process" style="font-size:0.82rem">
+                <strong>Standard Renewal Flow</strong><br>
+                Normal reminder email at T-7 days
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Model Signals -->
+      <div class="glass-card reveal" style="max-width:800px;margin:var(--space-2xl) auto 0">
+        <h4 style="margin-bottom:var(--space-md)"><i data-lucide="brain" style="width:20px;height:20px;vertical-align:middle;margin-right:8px;color:var(--zomato-red)"></i> Model Signal Design</h4>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-sm)">
+          <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);font-size:0.82rem;border-left:2px solid var(--zomato-red)">
+            <strong style="color:var(--text-primary)">Order frequency trend</strong><br>
+            <span style="color:var(--text-tertiary)">Last 30d vs prior 30d — trajectory signal</span>
+          </div>
+          <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);font-size:0.82rem;border-left:2px solid var(--zomato-gold)">
+            <strong style="color:var(--text-primary)">% promo-driven orders</strong><br>
+            <span style="color:var(--text-tertiary)">Orders with active promo vs without = habit vs discount dependency</span>
+          </div>
+          <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);font-size:0.82rem;border-left:2px solid var(--zomato-red)">
+            <strong style="color:var(--text-primary)">Session frequency without ordering</strong><br>
+            <span style="color:var(--text-tertiary)">Browsing without transacting = "thinking about cancelling" signal</span>
+          </div>
+          <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);font-size:0.82rem;border-left:2px solid var(--zomato-gold)">
+            <strong style="color:var(--text-primary)">Days to renewal proximity</strong><br>
+            <span style="color:var(--text-tertiary)">Churn intent spikes as renewal approaches</span>
+          </div>
+          <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);font-size:0.82rem;border-left:2px solid var(--zomato-red)">
+            <strong style="color:var(--text-primary)">Days since last order</strong><br>
+            <span style="color:var(--text-tertiary)">Recency decay — strongest single predictor</span>
+          </div>
+          <div style="padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);font-size:0.82rem;border-left:2px solid var(--zomato-gold)">
+            <strong style="color:var(--text-primary)">Gold Pick engagement</strong><br>
+            <span style="color:var(--text-tertiary)">Did they view/redeem this month's Gold Pick?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- GOLD PICK WIREFRAME -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="gold-pick">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">09 — "Gold Pick" Card Design</div>
+        <h2>The Home Screen <span class="text-gradient">Moment</span></h2>
+        <p>A monthly personalized restaurant recommendation with an exclusive perk — designed to create anticipation and food discovery.</p>
+      </div>
+
+      <div class="wireframe-container">
+        <!-- Phone Mockup -->
+        <div class="reveal-left">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-statusbar">
+                <span>9:41</span>
+                <span><i data-lucide="wifi" style="width:12px;height:12px;stroke-width:2.5px;vertical-align:middle;margin-right:4px"></i><i data-lucide="battery" style="width:14px;height:14px;stroke-width:2px;vertical-align:middle"></i></span>
+              </div>
+              <div class="phone-app-header">
+                <div class="phone-app-header-left">
+                  <svg width="22" height="22" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="48" fill="#E23744"/>
+                    <text x="50" y="62" font-family="Arial" font-weight="900" font-size="42" fill="white" text-anchor="middle">Z</text>
+                  </svg>
+                  <div>
+                    <div class="phone-location">Koramangala ▾</div>
+                    <div class="phone-location-sub">Bangalore, Karnataka</div>
+                  </div>
+                </div>
+                <span style="color:var(--zomato-gold);font-size:0.75rem;font-weight:700">GOLD ✦</span>
+              </div>
+
+              <!-- Search bar placeholder -->
+              <div style="margin:8px 12px;padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-full);font-size:0.72rem;color:var(--text-tertiary);border:1px solid var(--border-subtle)">
+                <i data-lucide="search" style="width:12px;height:12px;vertical-align:middle;margin-right:4px"></i> Search for restaurants, cuisines...
+              </div>
+
+              <!-- GOLD PICK CARD -->
+              <div class="gold-pick-card">
+                <div class="gold-pick-banner">
+                  <div class="gold-pick-label">
+                    ✦ Your Gold Pick — July
+                  </div>
+                  <span class="gold-pick-new">NEW</span>
+                </div>
+                <div class="gold-pick-restaurant">
+                  <div class="gold-pick-img"><i data-lucide="soup" style="width:40px;height:40px;color:var(--zomato-gold);position:relative;z-index:3"></i></div>
+                  <div class="gold-pick-restaurant-name">Burma Burma</div>
+                  <div class="gold-pick-cuisine">Burmese · Asian · Vegetarian · ⭐ 4.6</div>
+                  <div class="gold-pick-perk">
+                    <i data-lucide="gift" style="width:14px;height:14px;margin-right:6px;flex-shrink:0"></i> Exclusive: Free Khao Suey with any order this month
+                  </div>
+                  <div class="gold-pick-expiry">
+                    <i data-lucide="clock" style="width:12px;height:12px;margin-right:4px"></i> Expires July 31 · Gold Members Only
+                  </div>
+                </div>
+              </div>
+
+              <!-- Other restaurant cards (faded) -->
+              <div style="margin:12px;opacity:0.4">
+                <div style="display:flex;gap:8px">
+                  <div style="width:50%;height:70px;background:var(--bg-glass);border-radius:var(--radius-sm)"></div>
+                  <div style="width:50%;height:70px;background:var(--bg-glass);border-radius:var(--radius-sm)"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Annotations -->
+        <div class="reveal-right">
+          <h3 style="margin-bottom:var(--space-lg)">Design Annotations</h3>
+          <div class="annotations-list">
+            <div class="annotation-item">
+              <div class="annotation-number">1</div>
+              <div class="annotation-text">
+                <h4>"Your Gold Pick" Label</h4>
+                <p>Uses possessive "Your" — personalized, not generic. Gold crown icon (✦) reinforces premium status. Monthly cadence creates anticipation.</p>
+              </div>
+            </div>
+            <div class="annotation-item">
+              <div class="annotation-number">2</div>
+              <div class="annotation-text">
+                <h4>Restaurant Photo + Name</h4>
+                <p>Visual-first design. The restaurant is one the subscriber hasn't tried but likely aligns with their cuisine preferences — ML-driven constrained recommendation.</p>
+              </div>
+            </div>
+            <div class="annotation-item">
+              <div class="annotation-number">3</div>
+              <div class="annotation-text">
+                <h4>Exclusive Perk Badge</h4>
+                <p>Green = positive emotion. The perk is <em>additive</em> (free dish), not price-discriminatory. It's specific ("Free Khao Suey") not vague ("special offer").</p>
+              </div>
+            </div>
+            <div class="annotation-item">
+              <div class="annotation-number">4</div>
+              <div class="annotation-text">
+                <h4>Expiry Date</h4>
+                <p>Creates natural urgency without artificial scarcity. "Expires July 31" means the user has the whole month — it's not a flash sale that pressures immediate action.</p>
+              </div>
+            </div>
+            <div class="annotation-item">
+              <div class="annotation-number">5</div>
+              <div class="annotation-text">
+                <h4>Personalization Constraints</h4>
+                <p>Engine must: only recommend within delivery radius, only enrolled perk partners, avoid restaurants visited in last 2 weeks (freshness), de-prioritize recent low-rated restaurants.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SUCCESS METRICS -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="metrics">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">10 — Success Metrics</div>
+        <h2>Measuring What <span class="text-gradient">Matters</span></h2>
+        <p>Leading indicators show early signal. Lagging indicators confirm impact. Guardrails prevent unintended harm.</p>
+      </div>
+
+      <div class="metrics-table-wrapper reveal">
+        <table class="metrics-table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Metric</th>
+              <th>Why It Matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="metric-type leading">Leading</span></td>
+              <td><strong style="color:var(--text-primary)">Gold Pick card CTR</strong></td>
+              <td>% who open the card → engagement signal for the habit layer</td>
+            </tr>
+            <tr>
+              <td><span class="metric-type leading">Leading</span></td>
+              <td><strong style="color:var(--text-primary)">Gold Pick redemption rate</strong></td>
+              <td>% who visit the restaurant → actual behavior change, not just clicks</td>
+            </tr>
+            <tr>
+              <td><span class="metric-type leading">Leading</span></td>
+              <td><strong style="color:var(--text-primary)">Churn intervention email open + perk redemption</strong></td>
+              <td>Is the ML-triggered offer landing with high-risk subscribers?</td>
+            </tr>
+            <tr>
+              <td><span class="metric-type lagging">Lagging</span></td>
+              <td><strong style="color:var(--text-primary)">M3 renewal rate vs. baseline</strong></td>
+              <td>Primary retention metric — Month 3 is the highest-churn window</td>
+            </tr>
+            <tr>
+              <td><span class="metric-type lagging">Lagging</span></td>
+              <td><strong style="color:var(--text-primary)">% Gold orders without active promo</strong></td>
+              <td>Habit vs. discount dependency signal — are subscribers ordering for food identity?</td>
+            </tr>
+            <tr>
+              <td><span class="metric-type lagging">Lagging</span></td>
+              <td><strong style="color:var(--text-primary)">Gold-specific NPS delta</strong></td>
+              <td>Is identity attachment forming? Do Gold members rate experience higher?</td>
+            </tr>
+            <tr>
+              <td><span class="metric-type guardrail">Guardrail</span></td>
+              <td><strong style="color:var(--text-primary)">Restaurant partner satisfaction score</strong></td>
+              <td>Gold perks shouldn't feel punitive to partner restaurants</td>
+            </tr>
+            <tr>
+              <td><span class="metric-type guardrail">Guardrail</span></td>
+              <td><strong style="color:var(--text-primary)">Subscriber acquisition cost (SAC)</strong></td>
+              <td>Don't spend more acquiring new subscribers to replace churned ones</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- REFLECTION -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="reflection">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">11 — Reflection</div>
+        <h2>What I'd Do <span class="text-gradient">Differently</span></h2>
+      </div>
+
+      <div class="glass-card reflection-card reveal">
+        <blockquote>
+          If I were doing this case study again with unlimited time, I'd run 8–10 actual subscriber interviews rather than relying on public sentiment data. Reddit and Trustpilot skew negative — the users who are quietly satisfied with Gold don't post. That selection bias means my research likely overstates frustration and understates the functional value Gold genuinely provides to power users who order 15+ times a month. I'd also push harder on the restaurant partner side: the Gold Pick concept sounds great from the subscriber angle, but the partner economics (who funds the "free dessert"? how does Zomato structure the perk cost-sharing?) are the actual make-or-break for this feature. A PM who proposes a feature without understanding the supply-side economics is proposing a fantasy, not a product. Finally, I'd want to A/B test whether the "food identity" hypothesis actually holds — does a subscriber who engages with Gold Pick content really renew at higher rates, or is engagement just a proxy for users who were already going to stay? Correlation isn't causation, and a good PM should be the first person to challenge their own thesis.
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SOURCES -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="sources" style="padding-top:0">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">References</div>
+        <h2>Sources & <span class="text-gradient">Attribution</span></h2>
+      </div>
+
+      <div class="glass-card reveal" style="max-width:900px">
+        <div style="display:flex;flex-direction:column;gap:var(--space-md);font-size:0.82rem;color:var(--text-secondary)">
+          <div style="padding-bottom:var(--space-sm);border-bottom:1px solid var(--border-subtle)">
+            <strong style="color:var(--text-primary)">Financial & Corporate Data</strong>
+          </div>
+          <p>1. Eternal Limited (formerly Zomato) FY25 Annual Report — NSE India filings, <a href="https://www.nseindia.com/" target="_blank" rel="noopener noreferrer">nseindia.com</a></p>
+          <p>2. Q4 FY25 Earnings Report — Revenue ₹5,833 Cr (+64% YoY), Adj. EBITDA margin 5.2% of NOV — <a href="https://www.livemint.com/companies/news/eternal-q4-results-2025-net-profit-falls-78-yoy-to-rs-39-crore-revenue-surges-64-11746152345672.html" target="_blank" rel="noopener noreferrer">LiveMint</a>, <a href="https://entrackr.com/" target="_blank" rel="noopener noreferrer">Entrackr</a>, <a href="https://www.businesstoday.in/markets/company-stock/story/eternal-zomato-q4-results-net-profit-dives-78-to-rs-39-crore-revenue-up-64-475271-2025-05-01" target="_blank" rel="noopener noreferrer">BusinessToday</a></p>
+          <p>3. Zomato Gold 12.1M subscribers (Mar 2025), 7.4M (Mar 2024) — <a href="https://economictimes.indiatimes.com/" target="_blank" rel="noopener noreferrer">Economic Times</a>, <a href="https://www.nseindia.com/" target="_blank" rel="noopener noreferrer">NSE India</a></p>
+          <p>4. Gold contribution >50% of food delivery orders — <a href="https://economictimes.indiatimes.com/" target="_blank" rel="noopener noreferrer">Economic Times, 2024</a></p>
+          <p>5. Subscription revenue ~10% of total revenue (industry estimate) — <a href="https://miracuves.com/" target="_blank" rel="noopener noreferrer">Miracuves</a>, <a href="https://predictgrowth.ai/" target="_blank" rel="noopener noreferrer">PredictGrowth.ai</a></p>
+          <p>6. Eternal Ltd. rebranding from Zomato Ltd., multi-CEO structure — <a href="https://enacton.com/" target="_blank" rel="noopener noreferrer">Enacton</a>, <a href="https://www.business-standard.com/" target="_blank" rel="noopener noreferrer">Business Standard, March 2025</a></p>
+
+          <div style="padding-bottom:var(--space-sm);border-bottom:1px solid var(--border-subtle);margin-top:var(--space-md)">
+            <strong style="color:var(--text-primary)">User Sentiment & Reviews</strong>
+          </div>
+          <p>7. Reddit r/india, r/bangalore, r/mumbai — Zomato Gold user discussions, <a href="https://www.reddit.com/r/india/" target="_blank" rel="noopener noreferrer">Reddit r/india</a>, <a href="https://www.reddit.com/r/bangalore/" target="_blank" rel="noopener noreferrer">r/bangalore</a></p>
+          <p>8. Trustpilot — Zomato profile, 1.6★ average — <a href="https://www.trustpilot.com/review/zomato.com" target="_blank" rel="noopener noreferrer">trustpilot.com</a></p>
+          <p>9. Google Play Store — Zomato app reviews, 4.7★ aggregate, Gold-specific complaints — <a href="https://play.google.com/store/apps/details?id=com.application.zomato" target="_blank" rel="noopener noreferrer">Google Play Store</a></p>
+          <p>10. Apple App Store — Zomato iOS reviews mentioning Gold membership — <a href="https://apps.apple.com/in/app/zomato-food-delivery-dining/id434613896" target="_blank" rel="noopener noreferrer">Apple App Store</a></p>
+          <p>11. Platform fee increase (₹2 → ₹14.90/order) — User reports, <a href="https://www.reddit.com/r/india/comments/1ch332x/zomato_increases_platform_fee/" target="_blank" rel="noopener noreferrer">Reddit, 2025–2026</a></p>
+          <p>12. Rain surcharge on Gold members — <a href="https://www.indiatoday.in/" target="_blank" rel="noopener noreferrer">India Today, May 2025</a></p>
+          <p>13. CCPA notice on unfair trade practices — <a href="https://consumeraffairs.nic.in/sites/default/files/CP%20Act%20Notification/Guidelines-Dark-Patterns.pdf" target="_blank" rel="noopener noreferrer">CCPA Guidelines</a>, <a href="https://www.business-standard.com/" target="_blank" rel="noopener noreferrer">Business Standard, June 2025</a></p>
+
+          <div style="padding-bottom:var(--space-sm);border-bottom:1px solid var(--border-subtle);margin-top:var(--space-md)">
+            <strong style="color:var(--text-primary)">Competitive Intelligence</strong>
+          </div>
+          <p>14. Swiggy One & One BLCK features, tiered membership — <a href="https://www.swiggy.com/" target="_blank" rel="noopener noreferrer">swiggy.com</a>, <a href="https://www.fortuneindia.com/" target="_blank" rel="noopener noreferrer">FortuneIndia</a></p>
+          <p>15. Swiggy One BLCK partner perks (Amazon Prime, Disney+) — <a href="https://www.bestmediaifo.com/" target="_blank" rel="noopener noreferrer">BestMediaInfo</a></p>
+          <p>16. Swiggy One BLCK invite-only pricing ₹299/3mo — <a href="https://www.swiggy.com/" target="_blank" rel="noopener noreferrer">swiggy.com/one</a></p>
+          <p>17. Magicpin ONDC model, MagicPoints, rewards-based — <a href="https://magicpin.in/" target="_blank" rel="noopener noreferrer">magicpin.in</a>, <a href="https://economictimes.indiatimes.com/" target="_blank" rel="noopener noreferrer">EconomicTimes</a></p>
+
+          <div style="padding-bottom:var(--space-sm);border-bottom:1px solid var(--border-subtle);margin-top:var(--space-md)">
+            <strong style="color:var(--text-primary)">Industry Analysis & Frameworks</strong>
+          </div>
+          <p>18. Repeat order rate targets (>40% within 30 days) — <a href="https://www.reelo.io/" target="_blank" rel="noopener noreferrer">Reelo.io industry analysis</a></p>
+          <p>19. Spotify Wrapped-style retention strategies in food delivery — <a href="https://www.spotify.com/wrapped/" target="_blank" rel="noopener noreferrer">Spotify Wrapped Analysis</a></p>
+          <p>20. Gamification in food delivery (streaks, challenges, tiers) — Industry research, 2024–2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FOOTER -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <p style="font-size:0.72rem;max-width:600px;margin:0 auto;line-height:1.6">
+        Disclaimer: This is an independent case study for educational purposes. All data is sourced from publicly available information. 
+        Not affiliated with Zomato / Eternal Limited.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
