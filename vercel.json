@@ -1,14 +1,6 @@
 {
   "cleanUrls": true,
   "trailingSlash": true,
-  "redirects": [
-    { "source": "/Zomato%20Gold%20Retention-Beyond%20Discounts/web", "destination": "/zomato", "permanent": true },
-    { "source": "/Zomato%20Gold%20Retention-Beyond%20Discounts/web/:path*", "destination": "/zomato/:path*", "permanent": true },
-    { "source": "/Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web", "destination": "/spotify", "permanent": true },
-    { "source": "/Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/:path*", "destination": "/spotify/:path*", "permanent": true },
-    { "source": "/ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web", "destination": "/chatgpt", "permanent": true },
-    { "source": "/ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/:path*", "destination": "/chatgpt/:path*", "permanent": true }
-  ],
   "rewrites": [
     { "source": "/zomato", "destination": "/Zomato%20Gold%20Retention-Beyond%20Discounts/web/index.html" },
     { "source": "/zomato/", "destination": "/Zomato%20Gold%20Retention-Beyond%20Discounts/web/index.html" },

@@ -725,10 +725,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const listWrapper = document.getElementById('commandResults');
   let cursorIdx = 0;
 
+  const navigateToCaseStudy = (longPath, shortPath) => {
+    if (window.location.protocol === 'file:') {
+      window.open(longPath, '_blank');
+    } else {
+      window.open(shortPath, '_blank');
+    }
+  };
+
   const dataset = [
-    { label: 'Zomato Gold Case Study', desc: 'Subscription and habits layer analysis', action: () => { window.open('Zomato%20Gold%20Retention-Beyond%20Discounts/web/index.html', '_blank'); }},
-    { label: 'Spotify Creator Obscurity', desc: 'Podcast retention and discovery loops', action: () => { window.open('Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/index.html', '_blank'); }},
-    { label: 'ChatGPT Socratic Guidance', desc: 'Academic calibration UX proposal', action: () => { window.open('ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/index.html', '_blank'); }},
+    { label: 'Zomato Gold Case Study', desc: 'Subscription and habits layer analysis', action: () => { navigateToCaseStudy('Zomato%20Gold%20Retention-Beyond%20Discounts/web/index.html', '/zomato/'); }},
+    { label: 'Spotify Creator Obscurity', desc: 'Podcast retention and discovery loops', action: () => { navigateToCaseStudy('Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/index.html', '/spotify/'); }},
+    { label: 'ChatGPT Socratic Guidance', desc: 'Academic calibration UX proposal', action: () => { navigateToCaseStudy('ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/index.html', '/chatgpt/'); }},
     { label: 'PM Process Steps', desc: 'Horizontal frameworks walk', action: () => scrollToAnchor('#process') },
     { label: 'Case Showcase', desc: 'Rigorous strategic works list', action: () => scrollToAnchor('#case-studies') },
     { label: 'About om', desc: 'IIIT Nagpur credentials and skills', action: () => scrollToAnchor('#about') },
@@ -884,7 +892,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const href = panel.getAttribute('href');
       if (href) {
         e.preventDefault();
-        window.open(href, '_blank');
+        if (window.location.protocol === 'file:') {
+          window.open(href, '_blank');
+        } else {
+          let shortUrl = '';
+          if (href.includes('Zomato')) shortUrl = '/zomato/';
+          else if (href.includes('Spotify')) shortUrl = '/spotify/';
+          else if (href.includes('ChatGPT')) shortUrl = '/chatgpt/';
+          window.open(shortUrl, '_blank');
+        }
       }
     });
   });
