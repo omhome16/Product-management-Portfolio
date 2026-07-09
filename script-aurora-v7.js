@@ -886,23 +886,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Fallback programmatic navigation for case-panel cards
-  document.querySelectorAll('.case-panel').forEach(panel => {
-    panel.addEventListener('click', (e) => {
-      const href = panel.getAttribute('href');
-      if (href) {
-        e.preventDefault();
-        if (window.location.protocol === 'file:') {
-          window.open(href, '_blank');
-        } else {
-          let shortUrl = '';
-          if (href.includes('Zomato')) shortUrl = '/Zomato%20Gold%20Retention-Beyond%20Discounts/web/';
-          else if (href.includes('Spotify')) shortUrl = '/Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/';
-          else if (href.includes('ChatGPT')) shortUrl = '/ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/';
-          window.open(shortUrl, '_blank');
-        }
-      }
-    });
-  });
+
 
 });
