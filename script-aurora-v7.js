@@ -734,9 +734,9 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const dataset = [
-    { label: 'Zomato Gold Case Study', desc: 'Subscription and habits layer analysis', action: () => { navigateToCaseStudy('Zomato%20Gold%20Retention-Beyond%20Discounts/web/index.html', '/zomato/'); }},
-    { label: 'Spotify Creator Obscurity', desc: 'Podcast retention and discovery loops', action: () => { navigateToCaseStudy('Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/index.html', '/spotify/'); }},
-    { label: 'ChatGPT Socratic Guidance', desc: 'Academic calibration UX proposal', action: () => { navigateToCaseStudy('ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/index.html', '/chatgpt/'); }},
+    { label: 'Zomato Gold Case Study', desc: 'Subscription and habits layer analysis', action: () => { navigateToCaseStudy('Zomato%20Gold%20Retention-Beyond%20Discounts/web/index.html', '/Zomato%20Gold%20Retention-Beyond%20Discounts/web/'); }},
+    { label: 'Spotify Creator Obscurity', desc: 'Podcast retention and discovery loops', action: () => { navigateToCaseStudy('Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/index.html', '/Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/'); }},
+    { label: 'ChatGPT Socratic Guidance', desc: 'Academic calibration UX proposal', action: () => { navigateToCaseStudy('ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/index.html', '/ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/'); }},
     { label: 'PM Process Steps', desc: 'Horizontal frameworks walk', action: () => scrollToAnchor('#process') },
     { label: 'Case Showcase', desc: 'Rigorous strategic works list', action: () => scrollToAnchor('#case-studies') },
     { label: 'About om', desc: 'IIIT Nagpur credentials and skills', action: () => scrollToAnchor('#about') },
@@ -896,9 +896,9 @@ document.addEventListener('DOMContentLoaded', () => {
           window.open(href, '_blank');
         } else {
           let shortUrl = '';
-          if (href.includes('Zomato')) shortUrl = '/zomato/';
-          else if (href.includes('Spotify')) shortUrl = '/spotify/';
-          else if (href.includes('ChatGPT')) shortUrl = '/chatgpt/';
+          if (href.includes('Zomato')) shortUrl = '/Zomato%20Gold%20Retention-Beyond%20Discounts/web/';
+          else if (href.includes('Spotify')) shortUrl = '/Spotify%20Podcast%20Discovery%20The%20New%20Creator%20Gap/web/';
+          else if (href.includes('ChatGPT')) shortUrl = '/ChatGPT%20Academic%20Honesty%20for%20Indian%20Students/web/';
           window.open(shortUrl, '_blank');
         }
       }
